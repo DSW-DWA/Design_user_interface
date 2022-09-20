@@ -1,0 +1,9 @@
+@startuml
+class Monomial {
+    + Monomial()
+    + Monomial(ratio:double, extent:int)
+    + Ratio : double <<get>> <<set>>
+    - _extent : int <<get>> <<set>>
+    + Extent : int <<get>> <<set>>
+}
+@enduml

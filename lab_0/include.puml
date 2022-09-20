@@ -1,0 +1,29 @@
+@startuml
+class Program {
+    {static} Main(args:string[]) : void
+}
+class PolynomialBuilder {
+    + Sum(p1:Polynomial, p2:Polynomial) : Polynomial
+    + Sub(p1:Polynomial, p2:Polynomial) : Polynomial
+    + Mul(p1:Polynomial, p2:Polynomial) : Polynomial
+}
+class Monomial {
+    + Monomial()
+    + Monomial(ratio:double, extent:int)
+    + Ratio : double <<get>> <<set>>
+    - _extent : int <<get>> <<set>>
+    + Extent : int <<get>> <<set>>
+}
+class Polynomial {
+    - _maxExtent : int <<get>> <<set>>
+    + MaxExtent : int <<set>> <<get>>
+    + Polynomial(maxExtent:int)
+    + Polynomial(maxExtent:int, coefficients:List<double>)
+    + CalculateValue(argument:double) : double
+    + ReturnCoefficient(ind:int) : double
+    + ReturnPolynomial() : string
+}
+class "List`1"<T> {
+}
+Polynomial --> "Monomials<Monomial>" "List`1"
+@enduml

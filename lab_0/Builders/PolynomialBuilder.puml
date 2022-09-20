@@ -1,0 +1,7 @@
+@startuml
+class PolynomialBuilder {
+    + Sum(p1:Polynomial, p2:Polynomial) : Polynomial
+    + Sub(p1:Polynomial, p2:Polynomial) : Polynomial
+    + Mul(p1:Polynomial, p2:Polynomial) : Polynomial
+}
+@enduml

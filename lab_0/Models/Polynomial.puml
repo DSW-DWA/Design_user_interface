@@ -1,0 +1,14 @@
+@startuml
+class Polynomial {
+    - _maxExtent : int <<get>> <<set>>
+    + MaxExtent : int <<set>> <<get>>
+    + Polynomial(maxExtent:int)
+    + Polynomial(maxExtent:int, coefficients:List<double>)
+    + CalculateValue(argument:double) : double
+    + ReturnCoefficient(ind:int) : double
+    + ReturnPolynomial() : string
+}
+class "List`1"<T> {
+}
+Polynomial --> "Monomials<Monomial>" "List`1"
+@enduml
