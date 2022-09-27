@@ -1,4 +1,4 @@
-namespace Lab1
+namespace Lab0
 {
     public class PolynomialBuilder
     {

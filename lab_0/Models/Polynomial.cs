@@ -1,6 +1,6 @@
 
 
-namespace Lab1 {
+namespace Lab0 {
     public class Polynomial
     {
         private int _maxExtent {get; set;}
