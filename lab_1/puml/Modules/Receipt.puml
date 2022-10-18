@@ -1,0 +1,11 @@
+@startuml
+class Receipt {
+    + Receipt(number:string?, name:string?, man:string?)
+    + Receipt()
+    + COST : double <<get>> <<set>>
+    + Info() : void
+    + AddRecipientProcent(r:double?) : void
+    + <<override>> AddRecipient(t:string?) : void
+}
+Document <|-- Receipt
+@enduml

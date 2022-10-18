@@ -1,0 +1,59 @@
+@startuml
+class Program {
+    {static} Main(args:string[]) : void
+}
+class Bill {
+    + Bill(number:string?, name:string?, man:string?)
+    + Bill()
+    + SUM : double <<get>> <<set>>
+    + AddMoney(money:int) : void
+    + Info() : void
+    + ProcentOfYear(years:int, pr:double) : void
+    + <<override>> AddRecipient(t:string?) : void
+}
+Document <|-- Bill
+interface Paper {
+    Change() : void
+}
+interface Pen {
+    Change() : void
+}
+abstract class Document {
+    + faceNum : int <<get>> <<set>>
+    writeOnPaperUsePen : WriteSome?
+    Writing() : void
+    Change() : void
+    Change() : void
+    + RECIPIENT : string? <<get>> <<set>>
+    + Man : string? <<get>>
+    + Number : string? <<get>>
+    + Name : string? <<get>>
+    + Document(number:string?, officename:string?, man:string?)
+    + Document()
+    + <<override>> ToString() : string
+    + <<virtual>> AddRecipient(t:string?) : void
+    + Tmp() : void
+}
+Paper <|-- Document
+Pen <|-- Document
+class Invoice {
+    + NumOfItem : int <<get>> <<set>>
+    + Invoice(number:string?, name:string?, man:string?)
+    + Invoice()
+    + Info() : void
+    + AddItem(name:string?, num:int) : void
+    + DeletItem(ind:int) : void
+    + ChangeItemCount(ind:int, count:int) : void
+    + <<override>> AddRecipient(t:string?) : void
+}
+Document <|-- Invoice
+class Receipt {
+    + Receipt(number:string?, name:string?, man:string?)
+    + Receipt()
+    + COST : double <<get>> <<set>>
+    + Info() : void
+    + AddRecipientProcent(r:double?) : void
+    + <<override>> AddRecipient(t:string?) : void
+}
+Document <|-- Receipt
+@enduml

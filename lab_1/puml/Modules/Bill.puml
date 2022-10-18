@@ -1,0 +1,12 @@
+@startuml
+class Bill {
+    + Bill(number:string?, name:string?, man:string?)
+    + Bill()
+    + SUM : double <<get>> <<set>>
+    + AddMoney(money:int) : void
+    + Info() : void
+    + ProcentOfYear(years:int, pr:double) : void
+    + <<override>> AddRecipient(t:string?) : void
+}
+Document <|-- Bill
+@enduml

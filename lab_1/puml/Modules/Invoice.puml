@@ -1,0 +1,13 @@
+@startuml
+class Invoice {
+    + NumOfItem : int <<get>> <<set>>
+    + Invoice(number:string?, name:string?, man:string?)
+    + Invoice()
+    + Info() : void
+    + AddItem(name:string?, num:int) : void
+    + DeletItem(ind:int) : void
+    + ChangeItemCount(ind:int, count:int) : void
+    + <<override>> AddRecipient(t:string?) : void
+}
+Document <|-- Invoice
+@enduml

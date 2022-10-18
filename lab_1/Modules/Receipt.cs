@@ -2,32 +2,29 @@ namespace Lab1
 {
     class Receipt : Document
     {
-        private double cost = 100.0;
+        private double _cost = 0;
         public Receipt(string? number, string? name, string? man) : base(number, name, man) {  }
         public Receipt() : base() {}
         public double COST
         {
-            get { return cost; }
-            set { if (value > 0) cost = value; else cost = 100.0; }
-
+            get { if (_cost > 0) return _cost; else return 0; }
+            set 
+            { 
+                _cost += value;
+                if (_cost < 0 ) _cost = 0;
+            }
         }
-        public void Info()
+        public override void Info()
         {
             Console.WriteLine("Наименование документа: Рассписка");
             ToString();
             Console.WriteLine("Получитель: " + RECIPIENT);
-            Console.WriteLine("Стоимость рассписки: " + cost + "$");
+            Console.WriteLine("Стоимость рассписки: " + _cost + "$");
         }
 
-        public void AddRecipientProcent(double? r)
+        public void AddRecipientPercent(double r)
         {
-            if ( r != null) COST = cost * (1 + (Convert.ToDouble(r) / 100));
-            else COST = 0;
-        }
-        public override void AddRecipient(string? t)
-        {
-            base.AddRecipient(t);    
-            Console.WriteLine("Это овверайтый вирутальный метод");
+            _cost = _cost * (1 + (r / 100));
         }
     }
 }

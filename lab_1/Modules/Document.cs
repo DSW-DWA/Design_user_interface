@@ -1,77 +1,39 @@
 namespace Lab1
 {
-    interface Paper 
+    abstract class Document
     {
-        void Change();
-    }
-    interface Pen 
-    {
-        void Change();
-    }
-    delegate void WriteSome();
-
-    abstract class Document: Paper, Pen
-    {
-        private int _faceNum = 2;
-        public int faceNum 
-        {
-            get { return _faceNum;}
-            set { _faceNum = value;} 
-        }
-        WriteSome? writeOnPaperUsePen;
-        void Writing() 
-        {
-            Paper newspaper = (Paper)this;
-            writeOnPaperUsePen = newspaper.Change;
-            writeOnPaperUsePen += Tmp;
-        } 
-        void Paper.Change()
-        {
-            Console.WriteLine("Вы что-то изменили, интерфейс Paper");
-        }
-        void Pen.Change() 
-        {
-            Console.WriteLine("Вы что-то изменили, интерфейс Pen");
-        }
-        private string? Recipient;
+        private string? _recipient;
         public string? RECIPIENT
         {
-            get { return Recipient; }
-            set { if (value?.Length > 0) Recipient = value; else Recipient = "none"; }
+            get { return _recipient; }
+            set { _recipient += value; }
 
         }
-        public string? Man { get; }
-        public string? Number { get;  }
-        public string? Name { get; }
-        public Document(string? number, string? officename, string? man)
+        private string? _number { get;  }
+        private string? _name { get; }
+        public Document(string? number, string? officeName, string? rec)
         {
-            Number = number;
-            Name = officename;
-            Man = man;
-            Writing();
-            if (writeOnPaperUsePen != null) writeOnPaperUsePen();
+            _number = number ?? "Не указан";
+            _name = officeName ?? "Не указан";
+            RECIPIENT = rec ?? "Не указан"; 
         }
         public Document(){
-            Number = "Не указан";
-            Name = "Не указан";
-            Man = "Не указан";
-            Writing();
-            if (writeOnPaperUsePen != null)writeOnPaperUsePen();
+            _number = "Не указан";
+            _name = "Не указан";
+            RECIPIENT = "Не указан";
         }
         public override string ToString()
         {
-            Console.WriteLine($"Номер документа: {Number}");
-            Console.WriteLine($"Название офисса: {Name}");
-            return $"Номер документа: {Number}"+$"\nНазвание офисса: {Name}";
+            Console.WriteLine($"Номер документа: {_number}");
+            Console.WriteLine($"Название офисса: {_name}");
+            return $"Номер документа: {_number}"+$"\nНазвание офисса: {_name}";
         }
         public virtual void AddRecipient(string? t)
         {
-
-            if (RECIPIENT == "none") RECIPIENT = t;
-            else RECIPIENT = RECIPIENT + ", " + t;
+            if (RECIPIENT == "Не указан") RECIPIENT = t;
+            RECIPIENT = RECIPIENT + ", " + t;
         }
-        public void Tmp(){
-            Console.WriteLine("Просто существует...");
-        }
+        public virtual void Info()
+        {}
     }
 }

@@ -1,0 +1,26 @@
+@startuml
+interface Paper {
+    Change() : void
+}
+interface Pen {
+    Change() : void
+}
+abstract class Document {
+    + faceNum : int <<get>> <<set>>
+    writeOnPaperUsePen : WriteSome?
+    Writing() : void
+    Change() : void
+    Change() : void
+    + RECIPIENT : string? <<get>> <<set>>
+    + Man : string? <<get>>
+    + Number : string? <<get>>
+    + Name : string? <<get>>
+    + Document(number:string?, officename:string?, man:string?)
+    + Document()
+    + <<override>> ToString() : string
+    + <<virtual>> AddRecipient(t:string?) : void
+    + Tmp() : void
+}
+Paper <|-- Document
+Pen <|-- Document
+@enduml
