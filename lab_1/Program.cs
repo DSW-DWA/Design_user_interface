@@ -13,7 +13,7 @@
                 string? s = "1";
                 while (s != "0")
                 {
-                    Console.WriteLine("Возможности работы(введите цифру):\n0)Выход \n1)Добавить элемент \n2)Удалить элемент \n3)Вывести весь список \n4)Работа с объектом\n5)Поиск по списку");
+                    Console.WriteLine("Возможности работы(введите цифру):\n0)Выход \n1)Добавить элемент \n2)Удалить элемент \n3)Вывести весь список \n4)Работа с объектом \n5)Поиск по списку \n6)Написать что-то");
                     s = Convert.ToString(Console.ReadLine());
                     if (s == "1")
                     {
@@ -34,6 +34,8 @@
                         Console.WriteLine("Введите номер элемента, который вы хотите удалить");
                         string? s1 = Console.ReadLine();
                         int ind = Convert.ToInt32(s1);
+                        list[ind - 1].DestroyPaper();
+                        list[ind - 1].DestroyPen();
                         list.RemoveAt(ind - 1);
                         Console.WriteLine($"Длинна списка теперь {list.Count()}");
                     }
@@ -164,7 +166,7 @@
                     }
                     if (s == "5")
                     {
-                        Console.WriteLine("Выберите:\n1)по верхней границе суммы счета или стоимости \n2)Колличество объектов в рассписке \n3)По имени получателя");
+                        Console.WriteLine("Выберите:\n1)по верхней границе суммы счета или стоимости \n2)Колличество объектов в рассписке \n3)По имени получателя \n4)Поиск по нижней границе счета и колл-ву получателей");
                         int? r = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Введите значение");
                         var tmp = Console.ReadLine();
@@ -207,6 +209,33 @@
                                 }
                             }
                         }
+                        if (r == 4)
+                        {
+                            var tmp1 = tmp.Split(" ");
+                            for (int i = 0; i < list.Count(); i ++)
+                            {
+                                if ( (list[i].RECIPIENT.Count() == Convert.ToInt32(tmp1[1])))
+                                {    
+                                        if (list[i] is Receipt)
+                                    {
+                                        Receipt receipt = (Receipt)list[i];
+                                        if (receipt.COST <= Convert.ToInt32(tmp1[0])) receipt.Info();
+                                    }
+                                    if (list[i] is Bill)
+                                    {
+                                        Bill bill = (Bill)list[i];
+                                        if (bill.SUM <= Convert.ToInt32(tmp1[0])) bill.Info();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (s == "6")
+                    {
+                        Console.WriteLine("Введите, что хотите написать");
+                        var s1 = Console.ReadLine();
+                        if (list.Count() > 0)list[0].WriteSomething(s1);
+                        else Console.WriteLine("Вы порвали все свои листки");
                     }
                     Console.WriteLine("----------------------------------------------");
                 }
