@@ -1,0 +1,41 @@
+﻿<Window x:Class="Task_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task_1"
+        mc:Ignorable="d"
+        ToolTip="Моя формочка"
+        MouseMove="Window_MouseMove"
+        MouseDoubleClick="Window_MouseDoubleClick"
+        PreviewKeyDown="Window_PreviewKeyDown"
+        SizeChanged="Window_SizeChanged"
+        MouseDown="Window_MouseDown"
+        Icon="C:\Users\user\Desktop\3_семестр\МиСППИ\Design_user_interface\lab_4\Task_2\WpfApp1\WpfApp1\icon.ico"
+        Title="Лаб 6 Чупеев Андрей | 500x400" Height="400" Width="500">
+    <Window.Resources>
+        <ResourceDictionary>
+            <RoutedUICommand x:Key="Ctr1"/>
+            <RoutedUICommand x:Key="Close1"/>
+            <RoutedUICommand x:Key="Close2"/>
+            <RoutedUICommand x:Key="Unshrink"/>
+            <RoutedUICommand x:Key="Center1"/>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Gesture="CTRL+ALT+C" Command="{StaticResource Ctr1}" />
+        <KeyBinding Gesture="ALT+X" Command="{StaticResource Close1}" />
+        <KeyBinding Gesture="F10" Command="{StaticResource Close1}" />
+        <MouseBinding Gesture="SHIFT+RIGHTCLICK" Command="{StaticResource Unshrink}" />
+        <MouseBinding Gesture="MIDDLECLICK" Command="{StaticResource Center1}" />
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource Ctr1}" Executed="CtrShortcut1" />
+        <CommandBinding Command="{StaticResource Close1}" Executed="Window_Close" />
+        <CommandBinding Command="{StaticResource Close2}" Executed="Window_Close" />
+        <CommandBinding Command="{StaticResource Unshrink}" Executed="Window_Unshrink" />
+        <CommandBinding Command="{StaticResource Center1}" Executed="Window_Center" />
+    </Window.CommandBindings>
+    <Grid>
+    </Grid>
+</Window>

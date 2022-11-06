@@ -1,0 +1,44 @@
+﻿<Window x:Class="lab_4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab_4"
+        mc:Ignorable="d"
+        Icon="/icon.ico"
+        Height="450"
+        Width="800"
+        x:Name="GeneralWindow"
+        Title="Лаб 4/5 Чупеев Андрей" 
+        MouseMove="MouseMoveEvent"
+        Background="#FFA42929">
+    <Window.Resources>
+        <local:InToBoolConvert x:Key="Convert"></local:InToBoolConvert>
+    </Window.Resources>
+    <Grid RenderTransformOrigin="0.505,0.505">
+        <Button Content="Закрыть" 
+                FontSize="22" 
+                Height="50" 
+                Width="200" 
+                Click="Button_Close" 
+                Margin="10,10,10,10" 
+                Background="AntiqueWhite"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"/>
+        <Button FontSize="22"
+                Name="ResizeBtn"
+                Height="20" 
+                Width="20"
+                Click="Button_Resize" 
+                Margin="0" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top">
+			<Button.Visibility>
+				<MultiBinding Converter="{StaticResource Convert}">
+                    <Binding Path="Width" ElementName="GeneralWindow"/>
+                    <Binding Path="Height" ElementName="GeneralWindow"/>
+				</MultiBinding>
+			</Button.Visibility>
+        </Button>
+    </Grid>
+</Window>

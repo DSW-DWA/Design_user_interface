@@ -1,4 +1,5 @@
-﻿namespace Lab1
+﻿using System.Reflection.Metadata;
+namespace Lab1
 {
     class Program
     {
@@ -212,22 +213,22 @@
                         if (r == 4)
                         {
                             var tmp1 = tmp.Split(" ");
-                            for (int i = 0; i < list.Count(); i ++)
+                            List<Document> f1(List<Document> list, int num) => list.Where(x => x.RECIPIENT.Split(",").Count() == num).ToList();
+                            void f2(List<Document> list, int num) 
                             {
-                                if ( (list[i].RECIPIENT.Count() == Convert.ToInt32(tmp1[1])))
-                                {    
-                                        if (list[i] is Receipt)
-                                    {
-                                        Receipt receipt = (Receipt)list[i];
-                                        if (receipt.COST <= Convert.ToInt32(tmp1[0])) receipt.Info();
-                                    }
-                                    if (list[i] is Bill)
-                                    {
-                                        Bill bill = (Bill)list[i];
-                                        if (bill.SUM <= Convert.ToInt32(tmp1[0])) bill.Info();
-                                    }
+                                var tmpR = list.Where(x => x is Receipt).Select(x => (Receipt)x).Where(x => x.COST >= num).ToList();
+                                var tmpB = list.Where(x => x is Bill).Select(x => (Bill)x).Where(x => x.SUM >= num).ToList();
+                                foreach (var item in tmpR)
+                                {
+                                    item.Info();
+                                }
+                                foreach (var item in tmpB)
+                                {
+                                    item.Info();
                                 }
                             }
+                            var listForSec = f1(list, Convert.ToInt32(tmp1[1]));
+                            f2(listForSec, Convert.ToInt32(tmp1[0]));
                         }
                     }
                     if (s == "6")
