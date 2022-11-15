@@ -1,16 +1,43 @@
-﻿<Window x:Class="task_1.MainWindow"
+﻿<Window x:Class="Task_1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:task_1"
+        xmlns:local="clr-namespace:Task_1"
         mc:Ignorable="d"
-        Background="DimGray"
-        Title="MainWindow" Height="400" Width="800">
+        Background="Aquamarine"
+        Title="MainWindow" Height="400" Width="600">
     <Grid>
-        <Button Width="200" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"  Content="Шаг 1" FontSize="22"></Button>
-        <Button Width="200" Height="50" HorizontalAlignment="Left" Margin="10" Content="Шаг 2" FontSize="22"></Button>
-        <Button Width="200" Height="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Content="Шаг 3" FontSize="22"></Button>
-        <TextBox Width="550" Height="400" Margin="10" HorizontalAlignment="Right" TextWrapping="Wrap"></TextBox>
-    </Grid>
+        <Button Content="Шаг 1"
+                Width="200" 
+                Height="50" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Left" 
+                Margin="10" 
+                Click="Step1_OnClick" 
+                x:Name="Step1"></Button>
+        <Button Content="Шаг 2" 
+                Width="200" 
+                Height="50" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Left" 
+                Margin="10" 
+                Visibility="Hidden" 
+                Click="Step2_OnClick" 
+                x:Name="Step2"></Button>
+        <Button Content="Шаг 3" 
+                Width="200" 
+                Height="50" 
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Left"
+                Margin="10" 
+                Visibility="Hidden"
+                Click="Step3_OnClick"
+                x:Name="Step3"></Button>
+        <TextBox Width="290" 
+                 Height="320" 
+                 HorizontalAlignment="Right" 
+                 Margin="10" 
+                 x:Name="TextBoxConsole"></TextBox>
+    </Grid> 
 </Window>
