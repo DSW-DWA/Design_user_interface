@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:Task_2"
         mc:Ignorable="d"
         Background="Aquamarine"
-        Title="MainWindow" Height="300" Width="525">
+        Title="MainWindow" Height="600" Width="525">
     <Grid>
-        <Button Width="100" 
+        <Button Width="120" 
                 Height="50" 
                 Content="Выбрать файл"
                 VerticalAlignment="Top" 
@@ -16,23 +16,30 @@
                 x:Name="ChooseFile"
                 Click="ChooseFile_OnClick"
                 Margin="10"></Button>
-        <Button Width="100" 
+        <Button Width="120" 
                 Height="50" 
+                Content="Информация"
                 VerticalAlignment="Top" 
                 HorizontalAlignment="Center" 
+                x:Name="ShowData"
+                Click="ShowData_OnClick"
                 Margin="10"></Button>
-        <Button Width="100" 
+        <Button Width="120" 
                 Height="50" 
                 VerticalAlignment="Top" 
-                HorizontalAlignment="Right" 
+                HorizontalAlignment="Right"
+                x:Name="ChangeInfo"
+                Click="ChangeInfo_OnClick"
                 Margin="10"></Button>
         <TextBox Width="500" 
-                 Height="100"
+                 Height="145"
                  VerticalAlignment="Top" 
+                 x:Name="TopTextBox"
                  Margin="10 70 10 10"></TextBox>
         <TextBox Width="500"
-                 Height="100"
+                 Height="145"
                  VerticalAlignment="Top"
-                 Margin="10 180 10 10"></TextBox>
+                 x:Name="BottomTextBox"
+                 Margin="10 230 10 10"></TextBox>
     </Grid>
 </Window>

@@ -1,0 +1,24 @@
+﻿<Window x:Class="Task_2.ChooseFileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Task_2"
+        mc:Ignorable="d"
+        Padding="10"
+        Title="ChooseFileWindow" Height="200" Width="200">
+    <Grid>
+        <Button Height="85" 
+                VerticalAlignment="Top" 
+                Content="Small.txt" 
+                FontSize="22"
+                Click="SmallButton_OnClick"
+                x:Name="SmallButton"></Button>
+        <Button Height="85" 
+                VerticalAlignment="Bottom" 
+                Content="Big.txt" 
+                FontSize="22" 
+                Click="BigButton_OnClick"
+                x:Name="BigButton"></Button>
+    </Grid>
+</Window>
