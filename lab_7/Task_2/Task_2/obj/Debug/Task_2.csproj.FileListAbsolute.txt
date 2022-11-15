@@ -5,10 +5,8 @@ C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design
 C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\bin\Debug\Task_2.exe.config
 C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\bin\Debug\Task_2.exe
 C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\bin\Debug\Task_2.pdb
-C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\obj\Debug\ChooseFileWindow.g.cs
 C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\obj\Debug\MainWindow.g.cs
 C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\obj\Debug\Task_2_MarkupCompile.lref
-C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\obj\Debug\ChooseFileWindow.baml
 C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\obj\Debug\MainWindow.baml
 C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\obj\Debug\Task_2.g.resources
 C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\obj\Debug\Task_2.Properties.Resources.resources

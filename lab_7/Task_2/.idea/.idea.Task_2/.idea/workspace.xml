@@ -7,14 +7,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92e0925d-b1f1-4d79-a268-153f6fe29625" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Task_2/ChooseFileWindow.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_2/ChooseFileWindow.xaml.cs" afterDir="false" />
+    <list default="true" id="92e0925d-b1f1-4d79-a268-153f6fe29625" name="Changes" comment="add fileDialog">
+      <change afterPath="$PROJECT_DIR$/../Task_3/.idea/.idea.Task_3/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Task_3/.idea/.idea.Task_3/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Task_3/.idea/.idea.Task_3/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Task_3/.idea/.idea.Task_3/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Task_3/.idea/.idea.Task_3/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Task_3/Task_3/Student.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Task_3/Task_3/bin/Debug/Data_МиСППИ.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Task_3/Task_3/obj/Debug/.NETFramework,Version=v4.5.2.AssemblyAttributes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Task_3/Task_3/obj/Debug/App.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Task_3/Task_3/obj/Debug/App.g.i.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Task_3/Task_3/obj/Debug/MainWindow.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Task_3/Task_3/obj/Debug/MainWindow.g.i.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Task_3/Task_3/obj/Debug/Task_3.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Task_2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Task_2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_2/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Task_2/MainWindow.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_2/ChooseFileWindow.xaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_2/ChooseFileWindow.xaml.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Task_2/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Task_2/MainWindow.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Task_2/Task_2.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Task_2/Task_2.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Task_2/obj/Debug/MainWindow.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Task_2/obj/Debug/MainWindow.g.i.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_2/obj/Debug/Task_2.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Task_2/obj/Debug/Task_2.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Task_2/obj/Debug/Task_2.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Task_2/obj/Debug/Task_2.csproj.FileListAbsolute.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +94,8 @@
       <updated>1668505380477</updated>
       <workItem from="1668505389491" duration="1882000" />
       <workItem from="1668507601840" duration="546000" />
-      <workItem from="1668513680972" duration="5731000" />
+      <workItem from="1668513680972" duration="6126000" />
+      <workItem from="1668533799272" duration="352000" />
     </task>
     <task id="LOCAL-00001" summary="add task 2">
       <created>1668507173371</created>
@@ -90,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668507173371</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add lab 7 task 2">
+      <created>1668526987959</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1668526987959</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,6 +133,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="add task 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="add task 2" />
+    <MESSAGE value="add lab 7 task 2" />
+    <MESSAGE value="add fileDialog" />
+    <option name="LAST_COMMIT_MESSAGE" value="add fileDialog" />
   </component>
 </project>

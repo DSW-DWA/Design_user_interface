@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
+using Microsoft.Win32;
 
 namespace Task_2
 {
@@ -23,17 +24,14 @@ namespace Task_2
         private List<string> _words;
         private void ChooseFile_OnClick(object sender, RoutedEventArgs e)
         {
-            ChooseFileWindow win = new ChooseFileWindow();
+            FileDialog win = new OpenFileDialog();
             if (win.ShowDialog() == true)
             {
-                if (win.ChosenFiel != "nothing")
+                _nameOfFile = $"{win.SafeFileName}";
+                _lines = File.ReadAllLines($"{win.FileName}");
+                foreach (var line in _lines)
                 {
-                    _nameOfFile = $"{win.ChosenFiel}";
-                    _lines = File.ReadAllLines($"Files/{win.ChosenFiel}");
-                    foreach (var line in _lines)
-                    {
-                        TopTextBox.Text += $"{line}{Environment.NewLine}";
-                    }
+                    TopTextBox.Text += $"{line}{Environment.NewLine}";
                 }
             }
         }
