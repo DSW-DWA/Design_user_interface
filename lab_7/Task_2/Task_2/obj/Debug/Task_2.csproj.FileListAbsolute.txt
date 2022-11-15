@@ -1,0 +1,4 @@
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\obj\Debug\Task_2.csproj.AssemblyReference.cache
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\obj\Debug\Task_2.csproj.SuggestedBindingRedirects.cache
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\obj\Debug\App.g.cs
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_2\Task_2\obj\Debug\Task_2_MarkupCompile.cache
