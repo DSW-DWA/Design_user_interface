@@ -8,26 +8,24 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {}
+    "C:\\Users\\HP Demo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Desktop\\3_семестр\\МиСППИ\\Design_user_interface\\lab_5\\Task_2\\Task_2\\Task_2.csproj",
+      "projectUniqueName": "C:\\Users\\HP Demo\\OneDrive\\Рабочий стол\\Учеба\\МиСППИ\\Design_user_interface\\lab_5\\Task_2\\Task_2\\Task_2.csproj",
       "projectName": "Task_2",
-      "projectPath": "C:\\Users\\user\\Desktop\\3_семестр\\МиСППИ\\Design_user_interface\\lab_5\\Task_2\\Task_2\\Task_2.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Desktop\\3_семестр\\МиСППИ\\Design_user_interface\\lab_5\\Task_2\\Task_2\\obj\\",
+      "projectPath": "C:\\Users\\HP Demo\\OneDrive\\Рабочий стол\\Учеба\\МиСППИ\\Design_user_interface\\lab_5\\Task_2\\Task_2\\Task_2.csproj",
+      "packagesPath": "C:\\Users\\HP Demo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HP Demo\\OneDrive\\Рабочий стол\\Учеба\\МиСППИ\\Design_user_interface\\lab_5\\Task_2\\Task_2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\HP Demo\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0-windows"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -64,7 +62,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

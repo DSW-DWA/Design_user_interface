@@ -7,21 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fda3a0a-043e-42b8-a59e-1086610042c4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Task_1_fix/.idea/.idea.Task_1_fix/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Task_1_fix/.idea/.idea.Task_1_fix/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Task_1_fix/.idea/.idea.Task_1_fix/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Task_1_fix/.idea/.idea.Task_1_fix/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Task_1_fix/.idea/.idea.Task_1_fix/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Task_1_fix/.idea/.idea.Task_1_fix/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_2/.idea/.idea.Task_2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_2/.idea/.idea.Task_2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_2/Task_2/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_2/Task_2/MainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_2/Task_2/obj/Debug/Task_2.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_2/Task_2/obj/Debug/Task_2.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_3/Task_3/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_3/Task_3/Student.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_3/Task_3/bin/Debug/Data_МиСППИ.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_3/Task_3/bin/Debug/Data_МиСППИ.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_3/Task_3/obj/Debug/MainWindow.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_3/Task_3/obj/Debug/MainWindow.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_3/Task_3/obj/Debug/MainWindow.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_3/Task_3/obj/Debug/MainWindow.g.i.cs" afterDir="false" />
-    </list>
+    <list default="true" id="0fda3a0a-043e-42b8-a59e-1086610042c4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,7 +82,7 @@
       <workItem from="1668494926328" duration="81000" />
       <workItem from="1668495033882" duration="3770000" />
       <workItem from="1668574092988" duration="83000" />
-      <workItem from="1668574598015" duration="314000" />
+      <workItem from="1668574598015" duration="532000" />
     </task>
     <task id="LOCAL-00001" summary="add lab 7 task 1">
       <created>1668498825880</created>
