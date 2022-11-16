@@ -41,6 +41,7 @@ namespace Task_2
             BottomTextBox.Text = "";
             var nl = Environment.NewLine;
             BottomTextBox.Text += $"Имя файла: {_nameOfFile}{nl}";
+            BottomTextBox.Text += $"Колл-во строк:{_lines.Count()}{nl}";
             BottomTextBox.Text += $"Не пустых слов слово:{_lines.Where(x => x != "").Count()}{nl}";
             _longestWorld = _lines.Where(x => x != "").First(x => x.Length == _lines.Max(xx => xx.Length));
             var litWord = _lines.Where(x => x != "")

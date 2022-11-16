@@ -1,0 +1,16 @@
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\bin\Debug\Task_1_fix.exe.config
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\bin\Debug\Task_1_fix.exe
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\bin\Debug\Task_1_fix.pdb
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\obj\Debug\Task_1_fix.csproj.AssemblyReference.cache
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\obj\Debug\Task_1_fix.csproj.SuggestedBindingRedirects.cache
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\obj\Debug\MainWindow.g.cs
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\obj\Debug\App.g.cs
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\obj\Debug\Task_1_fix_MarkupCompile.cache
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\obj\Debug\Task_1_fix_MarkupCompile.lref
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\obj\Debug\MainWindow.baml
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\obj\Debug\Task_1_fix.g.resources
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\obj\Debug\Task_1_fix.Properties.Resources.resources
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\obj\Debug\Task_1_fix.csproj.GenerateResource.cache
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\obj\Debug\Task_1_fix.csproj.CoreCompileInputs.cache
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\obj\Debug\Task_1_fix.exe
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_7\Task_1_fix\Task_1_fix\obj\Debug\Task_1_fix.pdb
