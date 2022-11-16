@@ -5,8 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task_1"
         mc:Ignorable="d"
+        Padding="10"
+        Background="Red"
+        MouseLeftButtonDown="MainWindow_OnMouseLeftButtonDown"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        <Window.Resources>
+                <ResourceDictionary>
+                        <RoutedUICommand x:Key="Close1"/>
+                        <RoutedUICommand x:Key="Start1"/>
+                </ResourceDictionary>
+        </Window.Resources>
+        <Window.InputBindings>
+                <KeyBinding Gesture="ALT+X" Command="{StaticResource Close1}" />
+                <KeyBinding Gesture="ALT+I" Command="{StaticResource Start1}" />
+        </Window.InputBindings>
+        <Window.CommandBindings>
+                <CommandBinding Command="{StaticResource Close1}" Executed="Window_Close" />
+                <CommandBinding Command="{StaticResource Start1}" Executed="Window_Start" />
+        </Window.CommandBindings>
+        <Grid>
+        <Button Width="200" 
+                Height="50"
+                Content="Шаг 1"
+                VerticalAlignment="Top"
+                Click="Step1_OnClick"
+                ToolTip="Менять состояние"
+                x:Name="Step1"></Button>
+        <Button Width="200" 
+                Height="50"
+                Content="Шаг 2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Click="Step2_OnClick"
+                ToolTip="Сжать"
+                x:Name="Step2"></Button>
+        <Button Width="200" 
+                Height="50"
+                VerticalAlignment="Bottom"
+                Content="Шаг 3"
+                Click="Step3_OnClick"
+                ToolTip="менять цвет"
+                x:Name="Step3"></Button>
+        <Button Width="200" 
+                Height="50"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Click="Step4_OnClick"
+                ToolTip="меня курсор"
+                Content="Шаг 4"
+                x:Name="Step4"></Button>
     </Grid>
 </Window>
