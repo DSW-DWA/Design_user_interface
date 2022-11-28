@@ -42,6 +42,9 @@
             <ComboBoxItem Content="Название 6"></ComboBoxItem>
             <ComboBoxItem Content="Название 7"></ComboBoxItem>
             <ComboBoxItem Content="Название 8"></ComboBoxItem>
+            <ComboBoxItem x:Name="ComboBoxItemTitle">
+                <TextBox x:Name="TextBoxAddTitle" Width="200" KeyDown="TextBoxAddTitle_OnKeyDown"></TextBox>
+            </ComboBoxItem>
         </ComboBox>
         <GroupBox Header="Размер шрифта" 
                   Padding="5"
@@ -58,20 +61,26 @@
                              Content="12"
                              IsChecked="True"
                              x:Name="RadioButtonDefaultFont"
+                             PreviewMouseDown="RadioButtonDefaultFont_OnPreviewMouseDown"
                              Checked="ToggleButton_OnChecked"></RadioButton>
                 <RadioButton Margin="3" 
-                             Checked="ToggleButton_OnChecked" 
+                             PreviewMouseDown="RadioButtonDefaultFont_OnPreviewMouseDown"
+                             Checked="ToggleButton_OnChecked"
                              Content="10"></RadioButton>
                 <RadioButton Margin="3" 
+                             PreviewMouseDown="RadioButtonDefaultFont_OnPreviewMouseDown"
                              Checked="ToggleButton_OnChecked"
                              Content="8"></RadioButton>
                 <RadioButton Margin="3"
+                             PreviewMouseDown="RadioButtonDefaultFont_OnPreviewMouseDown"
                              Checked="ToggleButton_OnChecked"
                              Content="6"></RadioButton>
                 <RadioButton Margin="3"
+                             PreviewMouseDown="RadioButtonDefaultFont_OnPreviewMouseDown"
                              Checked="ToggleButton_OnChecked"
                              Content="4"></RadioButton>
                 <RadioButton Margin="3"
+                             PreviewMouseDown="RadioButtonDefaultFont_OnPreviewMouseDown"
                              Checked="ToggleButton_OnChecked"
                              Content="2"></RadioButton>
             </StackPanel>
@@ -84,7 +93,7 @@
                      MouseLeave="UIElement_OnMouseLeave"
                      HorizontalAlignment="Right"
                      VerticalAlignment="Top">
-            <CheckBox Height="20" x:Name="CheckBox_comboBox" Click="ButtonBase_OnClick_Title" Content="Заблакировать ComboBox" />
+            <CheckBox Height="20" x:Name="CheckBox_comboBox" Click="ButtonBase_OnClick_Title" Content="Убрать ComboBox" />
             <CheckBox Height="20" x:Name="CheckBox_groupBox" Click="ButtonBase_OnClick_Font" Content="Заблакирвоать GroupBox" />
         </StackPanel>
         <Menu VerticalAlignment="Top"
@@ -93,42 +102,6 @@
               MouseMove="UIElement_OnMouseMove"
               MouseLeave="UIElement_OnMouseLeave"
               Height="20">
-            <MenuItem Header="ListBox1">
-                <ListBox SelectionMode="Multiple"
-                         x:Name="ListBox1"
-                         Height="60"
-                         Width="70">
-                    <ListBoxItem Content="1.0"></ListBoxItem>
-                    <ListBoxItem Content="2.0"></ListBoxItem>
-                    <ListBox.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="Удалить" Click="MenuItem_OnClick_Delete"></MenuItem>
-                        </ContextMenu>
-                    </ListBox.ContextMenu>
-                </ListBox>
-            </MenuItem>
-            <MenuItem Header="ListBox2">
-            <ListBox x:Name="ListBox2"
-                 SelectionMode="Multiple"
-                 Width="70"
-                 Height="60"
-                 Padding="0">
-                <ListBoxItem> 3.0 </ListBoxItem>
-                <ListBoxItem> 4.0 </ListBoxItem>
-                <ListBox.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Удалить" Click="MenuItem_OnClick_Delete"></MenuItem>
-                    </ContextMenu>
-                </ListBox.ContextMenu>
-            </ListBox>
-            </MenuItem>
-            <MenuItem Header="TextBox">
-                <TextBox Background="White"
-                         PreviewTextInput="NumberValidationTextBoxC"
-                         KeyDown="TextBox_OnKeyDown"
-                        Width="70">
-                </TextBox>
-            </MenuItem>
             <MenuItem Click="MenuItem_OnClick_C" 
                       Header="C">
             </MenuItem>
@@ -140,39 +113,73 @@
             </MenuItem>
             <Menu.ContextMenu>
                 <ContextMenu >
-                    <MenuItem StaysOpenOnClick="True" Header="ListBox3">
-                        <ListBox SelectionMode="Multiple"
-                                 x:Name="ListBox3"
-                                 HorizontalAlignment="Left"
-                                 VerticalAlignment="Top"
-                                 Width="70">
-                            <ListBoxItem Content="5.0"></ListBoxItem>
-                            <ListBoxItem Content="6.0"></ListBoxItem>
-                            <ListBox.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Удалить" Click="MenuItem_OnClick_Delete"></MenuItem>
-                                </ContextMenu>
-                            </ListBox.ContextMenu>
-                        </ListBox>
-                    </MenuItem>
-                    <MenuItem StaysOpenOnClick="True" Header="TextBox3">
-                        <TextBox Background="White"
-                                 HorizontalAlignment="Right"
-                                 VerticalAlignment="Top"
-                                 KeyDown="TextBox_OnKeyDown_ContextMenu"
-                                 Width="70">
-                        </TextBox>
-                    </MenuItem>
-                    <MenuItem Header="Удалить" Click="MenuItem_OnClick_Delete"></MenuItem>
                     <MenuItem Header="A" Click="MenuItem_OnClick_A"></MenuItem>
                     <MenuItem Header="D" Click="MenuItem_OnClick_D"></MenuItem>
                 </ContextMenu>
             </Menu.ContextMenu>
         </Menu>
-        <StatusBar x:Name="StatusBar" 
-                   VerticalAlignment="Bottom"
-                   Height="20"
-                   Visibility="Hidden">
+        <TextBlock Height="15" Width="100" TextAlignment="Center" Margin="450 250 0 50"> TextBox2</TextBlock>
+        <TextBox Background="White"
+                 HorizontalAlignment="Right"
+                 VerticalAlignment="Center"
+                 Margin="0 250 10 0"
+                 KeyDown="TextBox_OnKeyDown_ContextMenu"
+                 Width="70">
+        </TextBox>
+        <TextBlock Height="15" Width="100" TextAlignment="Center" Margin="450 0 0 50"> TextBox1</TextBlock>
+        <TextBox Background="White"
+                 PreviewTextInput="NumberValidationTextBoxC"
+                 KeyDown="TextBox_OnKeyDown"
+                 Height="20"
+                 Margin="450 0 0 0"
+                 Width="70">
+        </TextBox>
+        <TextBlock Height="15" Width="100" TextAlignment="Center" Margin="250 0 0 150"> Listbox 1</TextBlock>
+        <ListBox SelectionMode="Multiple"
+                 x:Name="ListBox1"
+                 Height="100"
+                 Margin="250 0 0 0"
+                 Width="100">
+            <ListBoxItem Content="1.0"></ListBoxItem>
+            <ListBoxItem Content="2.0"></ListBoxItem>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Удалить" Click="MenuItem_OnClick_Delete"></MenuItem>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
+        <TextBlock Height="15" Width="100" TextAlignment="Center" Margin="0 0 0 150"> Listbox 2</TextBlock>
+        <ListBox x:Name="ListBox2"
+                 SelectionMode="Multiple"
+                 Width="100"
+                 Height="100"
+                 Padding="0">
+                <ListBoxItem> 3.0 </ListBoxItem>
+                <ListBoxItem> 4.0 </ListBoxItem>
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Удалить" Click="MenuItem_OnClick_Delete"></MenuItem>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+            </ListBox>
+        <TextBlock Height="15" Width="100" TextAlignment="Center" Margin="0 250 0 100"> Listbox 3</TextBlock>
+            <ListBox SelectionMode="Multiple"
+                     x:Name="ListBox3"
+                     Margin="0 250 0 0"
+                     Height="60"
+                     Width="200">
+                <ListBoxItem Content="5.0"></ListBoxItem>
+                <ListBoxItem Content="6.0"></ListBoxItem>
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Удалить" Click="MenuItem_OnClick_Delete"></MenuItem>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+            </ListBox>
+            <StatusBar x:Name="StatusBar" 
+                       VerticalAlignment="Bottom"
+                       Height="20"
+                       Visibility="Hidden">
             Здесь будет подсказка...
         </StatusBar>
     </Grid>

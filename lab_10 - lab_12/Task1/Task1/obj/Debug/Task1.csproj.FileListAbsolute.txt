@@ -1,0 +1,16 @@
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\bin\Debug\Task1.exe.config
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\bin\Debug\Task1.exe
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\bin\Debug\Task1.pdb
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1.csproj.AssemblyReference.cache
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1.csproj.SuggestedBindingRedirects.cache
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\MainWindow.g.cs
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\App.g.cs
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1_MarkupCompile.cache
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1_MarkupCompile.lref
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\MainWindow.baml
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1.g.resources
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1.Properties.Resources.resources
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1.csproj.GenerateResource.cache
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1.csproj.CoreCompileInputs.cache
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1.exe
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1.pdb

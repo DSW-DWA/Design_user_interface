@@ -19,16 +19,30 @@ namespace Task_1
         {
             InitializeComponent();
             _comboBox = ComboBoxTitles;
-            _groupBox = GroupBoxFont;
+            _groupBoxSetMode = true;
         }
 
         private UIElement _comboBox;
-        private UIElement _groupBox;
+        private bool _groupBoxSetMode;
         private void ComboBoxTitles_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var comboBox = (ComboBox)sender;
-            var selectedItem = (ComboBoxItem)comboBox.SelectedItem;
-            Application.Current.MainWindow.Title = selectedItem.Content.ToString();
+            var selectedItem = (ComboBoxItem)ComboBoxTitles.SelectedItem;
+            if (ComboBoxItemTitle.IsSelected)
+            {
+                //ComboBoxTitles.SelectedItem = ComboBoxTitles.Items[ComboBoxTitles.Items.Count-2];
+                ComboBoxTitles.SelectedItem = null;
+            }
+            else
+            {
+                if (selectedItem != null)
+                {
+                    Application.Current.MainWindow.Title = selectedItem.Content.ToString();   
+                }
+                else
+                {
+                    Application.Current.MainWindow.Title = "Изначальное название";
+                }
+            }
         }
         
         private void ToggleButton_OnChecked(object sender, RoutedEventArgs e)
@@ -40,14 +54,7 @@ namespace Task_1
 
         private void ButtonBase_OnClick_Font(object sender, RoutedEventArgs e)
         {
-            if (Grid.Children.Contains(_groupBox))
-            {
-                Grid.Children.Remove(_groupBox);
-            }
-            else
-            {
-                Grid.Children.Add(_groupBox);
-            }
+            _groupBoxSetMode = !_groupBoxSetMode;
         }
 
         private void ButtonBase_OnClick_Title(object sender, RoutedEventArgs e)
@@ -142,14 +149,22 @@ namespace Task_1
 
         private void MenuItem_OnClick_E(object sender, RoutedEventArgs e)
         {
+            var f = false;
             foreach (var listBox1Item in ListBox1.Items)
             {
                 var lbi = (ListBoxItem)listBox1Item;
                 var num = Convert.ToDouble(lbi.Content,new System.Globalization.CultureInfo("en-US"));
-                if (Math.Truncate(num) == 0 && num > 0)
+                if (num == 0) f = true;
+            }
+            foreach (var listBox1Item in ListBox1.Items)
+            {
+                var lbi = (ListBoxItem)listBox1Item;
+                var num = Convert.ToDouble(lbi.Content,new System.Globalization.CultureInfo("en-US"));
+                if (f)
                 {
                     var lbiForLb2 = new ListBoxItem();
-                    lbiForLb2.Content = lbi.Content;
+                    var dr = num - Math.Truncate(num);
+                    lbiForLb2.Content = dr.ToString();
                     ListBox2.Items.Add(lbiForLb2);
                 }
             }
@@ -196,11 +211,6 @@ namespace Task_1
             RadioButtonDefaultFont.IsChecked = true;
             CheckBox_comboBox.IsChecked = false;
             CheckBox_groupBox.IsChecked = false;
-            if (!Grid.Children.Contains(_groupBox))
-            {
-                Grid.Children.Add(_groupBox);
-            }
-            
             if (!Grid.Children.Contains(_comboBox))
             {
                 Grid.Children.Add(_comboBox);
@@ -219,10 +229,6 @@ namespace Task_1
             RadioButtonDefaultFont.IsChecked = true;
             CheckBox_comboBox.IsChecked = false;
             CheckBox_groupBox.IsChecked = false;
-            if (!Grid.Children.Contains(_groupBox))
-            {
-                Grid.Children.Add(_groupBox);
-            }
             
             if (!Grid.Children.Contains(_comboBox))
             {
@@ -258,6 +264,29 @@ namespace Task_1
         private void UIElement_OnMouseLeave(object sender, MouseEventArgs e)
         {
             StatusBar.Visibility = Visibility.Hidden;
+        }
+
+        private void TextBoxAddTitle_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var cbi = new ComboBoxItem();
+                cbi.Content = TextBoxAddTitle.Text;
+                ComboBoxTitles.Items.Insert(ComboBoxTitles.Items.Count - 1, cbi);
+                ComboBoxTitles.SelectedItem = cbi;
+            }
+        }
+
+        private void RadioButtonDefaultFont_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (_groupBoxSetMode)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }
