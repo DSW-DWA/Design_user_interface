@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task1"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Background="Aqua"
-        ResizeMode="NoResize"
+        SizeChanged="MainWindow_OnSizeChanged"
         Title="MainWindow" Height="600" Width="600">
     <Window.Resources>
         <BeginStoryboard x:Key="MyStoryboard">
@@ -25,17 +27,30 @@
                     From="0.0" To="90" Duration="0:0:1" />
             </Storyboard>
         </BeginStoryboard>
+        <ObjectDataProvider MethodName="GetType" 
+                            ObjectType="{x:Type sys:Type}" x:Key="colorsTypeOdp">
+            <ObjectDataProvider.MethodParameters>
+                <sys:String>System.Windows.Media.Colors, PresentationCore,
+                    Version=3.0.0.0, Culture=neutral, 
+                    PublicKeyToken=31bf3856ad364e35</sys:String>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider ObjectInstance="{StaticResource colorsTypeOdp}"  
+                            MethodName="GetProperties" x:Key="colorPropertiesOdp">
+        </ObjectDataProvider>
     </Window.Resources>
     <Grid>
         <TabControl x:Name="Draw">
-            <TabItem Name="DrawRectangle" Initialized="DrawRectangle_OnInitialized" MouseDown="DrawRectangle_OnMouseDown">
-                <TabItem.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Сохранить" Click="SaveButton_OnClick"></MenuItem>
-                    </ContextMenu>
-                </TabItem.ContextMenu>
+        <TabControl.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Сохранить" Click="SaveButton_OnClick"></MenuItem>
+                <MenuItem Header="Авто. перерисовка"  Name="AutoRewrite" Click="MenuItem_OnClick1"></MenuItem>
+                <MenuItem Header="Перерисовка"  Name="Rewrite" Click="MenuItem_OnClick2"></MenuItem>
+            </ContextMenu>
+        </TabControl.ContextMenu>
+            <TabItem Name="DrawRectangle">
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" MouseDown="DrawRectangle_OnMouseDown">
                         <TextBlock Margin="3">Прямоугольник</TextBlock>
                     </StackPanel>
                 </TabItem.Header>
@@ -45,7 +60,7 @@
                                     Width="200"
                                     HorizontalAlignment="Right"
                                     Background="Gray">
-                            <Grid Height="40">
+                            <Grid Height="40" ToolTip="от 1 до 9">
                                 <TextBlock TextAlignment="Center">Колл-во прямоугольников</TextBlock>
                                 <Grid VerticalAlignment="Bottom"
                                       Height="20" Margin="10 0">
@@ -53,7 +68,8 @@
                                              x:FieldModifier="private"
                                              Text="3"
                                              PreviewTextInput="RectangleCount_OnPreviewTextInput"
-                                             TextChanged="Rectangle_OnTextChanged"/>
+                                             LostFocus="RectangleSideA_OnLostFocus"
+                                             KeyDown="RectangleSideB_OnKeyDown"/>
                                     <Button FontFamily="Marlett"
                                             FontSize="7"
                                             Content="5"
@@ -72,15 +88,15 @@
                                             HorizontalAlignment="Right"/>
                                 </Grid>
                             </Grid>
-                            <Grid Height="40" Margin="0 10">
+                            <Grid Height="40" Margin="0 10" ToolTip="от 0 до 600">
                                 <TextBlock TextAlignment="Center">Высота</TextBlock>
                                 <Grid VerticalAlignment="Bottom"
                                       Height="20" Margin="10 0">
                                     <TextBox x:Name="RectangleSideA"
-                                             x:FieldModifier="private"
                                              Text="60"
                                              PreviewTextInput="RectangleCount_OnPreviewTextInput"
-                                             TextChanged="Rectangle_OnTextChanged"/>
+                                             LostFocus="RectangleSideA_OnLostFocus"
+                                             KeyDown="RectangleSideB_OnKeyDown"/>
                                     <Button FontFamily="Marlett"
                                             FontSize="7"
                                             Content="5"
@@ -99,7 +115,7 @@
                                             HorizontalAlignment="Right"/>
                                 </Grid>
                             </Grid>
-                            <Grid Height="40" Margin="0 10">
+                            <Grid Height="40" Margin="0 10" ToolTip="от 0 до 600">
                                 <TextBlock TextAlignment="Center">Длина</TextBlock>
                                 <Grid VerticalAlignment="Bottom"
                                       Height="20" Margin="10 0">
@@ -107,30 +123,8 @@
                                              x:FieldModifier="private"
                                              Text="100"
                                              PreviewTextInput="RectangleCount_OnPreviewTextInput"
-                                             TextChanged="Rectangle_OnTextChanged"/>
-                                    <Button FontFamily="Marlett"
-                                            FontSize="7"
-                                            Content="5"
-                                            Height="10"
-                                            Width="20"
-                                            Click="ButtonBase_OnClick_Up"
-                                            VerticalAlignment="Top"
-                                            HorizontalAlignment="Right"/>
-                                    <Button FontFamily="Marlett"
-                                            FontSize="7"
-                                            Content="6"
-                                            Height="10"
-                                            Width="20"
-                                            Click="ButtonBase_OnClick_Down"
-                                            VerticalAlignment="Bottom"
-                                            HorizontalAlignment="Right"/>
-                                </Grid>
-                            </Grid>
-                            <Grid Height="40" Margin="0 10">
-                                <TextBlock TextAlignment="Center">Толщина линий</TextBlock>
-                                <Grid VerticalAlignment="Bottom"
-                                      Height="20" Margin="10 0">
-                                    <TextBox x:Name="RectangStrokeThick" x:FieldModifier="private" Text="1" TextChanged="Rectangle_OnTextChanged"/>
+                                             LostFocus="RectangleSideA_OnLostFocus"
+                                             KeyDown="RectangleSideB_OnKeyDown"/>
                                     <Button FontFamily="Marlett"
                                             FontSize="7"
                                             Content="5"
@@ -152,29 +146,27 @@
                             <ComboBox x:Name="ComboBoxRectangleStrokeType"
                                       Height="20"
                                       Margin="10"
+                                      ToolTip="Переключает вид линий"
                                       SelectionChanged="ComboBoxRectangleStrokeType_OnSelectionChanged"
                                       VerticalAlignment="Top">
                                 <ComboBoxItem IsSelected="True" Content="Сплошные"></ComboBoxItem>
                                 <ComboBoxItem Content="Штрихованные"></ComboBoxItem>
                                 <ComboBoxItem Content="Точки"></ComboBoxItem>
                             </ComboBox>
-                            <ComboBox x:Name="ComboBoxRectangleStrokeColor"
-                                      Height="20"
-                                      Margin="10"
+                            <ComboBox Name="ComboBoxRectangleStrokeColor"
+                                      Margin="10 0"
+                                      SelectedValue="Black"
                                       SelectionChanged="ComboBoxRectangleStrokeColor_OnSelectionChanged"
-                                      VerticalAlignment="Top">
-                                <ComboBoxItem IsSelected="True" Content="Black"></ComboBoxItem>
-                                <ComboBoxItem Content="Random"></ComboBoxItem>
-                                <ComboBoxItem Content="Red"></ComboBoxItem>
-                                <ComboBoxItem Content="Green"></ComboBoxItem>
-                                <ComboBoxItem Content="Yellow"></ComboBoxItem>
-                                <ComboBoxItem Content="Orange"></ComboBoxItem>
-                                <ComboBoxItem Content="White"></ComboBoxItem>
-                                <ComboBoxItem Content="Blue"></ComboBoxItem>
-                            </ComboBox>
+                                      ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}"
+                                      DisplayMemberPath="Name"
+                                      ToolTip="Переключает цвет линий"
+                                      SelectedValuePath="Name" />
                             <CheckBox x:Name="CheckBoxRectangles"
                                       Click="CheckBoxRectangles_OnClick"
-                                      Margin="10 0">Авто перерисовка</CheckBox>
+                                      Margin="10 10 0 0">Авто перерисовка</CheckBox>
+                            <CheckBox x:Name="CheckBoxRectangleRandom"
+                                      Click="CheckBoxRectangleRandom_OnClick"
+                                      Margin="10 10 0 0">Случайный цвет</CheckBox>
                             <Button VerticalAlignment="Bottom"
                                     Margin="10"
                                     Name="RectanglesRewrite"
@@ -182,9 +174,10 @@
                         </StackPanel>
                         <Canvas x:Name="CanvasRectangles">
                             <Grid x:Name="Rectangles"
-                                  HorizontalAlignment="Left"
-                                  Width="390"
-                                  Height="570">
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  MinWidth="390"
+                                  MinHeight="570">
                                 <Rectangle Height="60"
                                            Width="100"
                                            StrokeThickness="1"
@@ -208,14 +201,9 @@
                     </Grid>
                 </TabItem.Content>
             </TabItem>
-            <TabItem x:Name="DrawSquare" MouseDown="DrawRectangle_OnMouseDown">
-                <TabItem.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Сохранить" Click="SaveButton_OnClick"></MenuItem>
-                    </ContextMenu>
-                </TabItem.ContextMenu>
+            <TabItem x:Name="DrawSquare">
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" MouseDown="DrawRectangle_OnMouseDown">
                         <TextBlock Margin="3">Квадраты</TextBlock>
                     </StackPanel>
                 </TabItem.Header>
@@ -225,7 +213,7 @@
                                     Width="200"
                                     HorizontalAlignment="Right"
                                     Background="Gray">
-                            <Grid Height="40">
+                            <Grid Height="40" ToolTip="от 1 до 9">
                                 <TextBlock TextAlignment="Center">Колл-во квадратов</TextBlock>
                                 <Grid VerticalAlignment="Bottom"
                                       Height="20" Margin="10 0">
@@ -233,7 +221,8 @@
                                              x:FieldModifier="private"
                                              Text="3"
                                              PreviewTextInput="RectangleCount_OnPreviewTextInput"
-                                             TextChanged="Rectangle_OnTextChanged"/>
+                                             LostFocus="RectangleSideA_OnLostFocus"
+                                             KeyDown="RectangleSideB_OnKeyDown"/>
                                     <Button FontFamily="Marlett"
                                             FontSize="7"
                                             Content="5"
@@ -252,7 +241,7 @@
                                             HorizontalAlignment="Right"/>
                                 </Grid>
                             </Grid>
-                            <Grid Height="40" Margin="0 10">
+                            <Grid Height="40" Margin="0 10" ToolTip="от 0 до 600">
                                 <TextBlock TextAlignment="Center">Сторона</TextBlock>
                                 <Grid VerticalAlignment="Bottom"
                                       Height="20" Margin="10 0">
@@ -260,7 +249,8 @@
                                              x:FieldModifier="private"
                                              Text="200"
                                              PreviewTextInput="RectangleCount_OnPreviewTextInput"
-                                             TextChanged="Rectangle_OnTextChanged"/>
+                                             LostFocus="RectangleSideA_OnLostFocus"
+                                             KeyDown="RectangleSideB_OnKeyDown"/>
                                     <Button FontFamily="Marlett"
                                             FontSize="7"
                                             Content="5"
@@ -279,12 +269,12 @@
                                             HorizontalAlignment="Right"/>
                                 </Grid>
                             </Grid>
-                            <Grid Height="40" Margin="0 10">
+                            <Grid Height="40" Margin="0 10" ToolTip="Меня косинус угла наклона квадрата">
                                 <TextBlock TextAlignment="Center">Косинус угла наклона (от 0 до 1)</TextBlock>
                                 <Slider VerticalAlignment="Bottom"
                                         Margin="10 0"
-                                        Minimum="0"
-                                        Maximum="1"
+                                        Minimum="0.01"
+                                        Maximum="0.99"
                                         Value="0.5"
                                         x:Name="SquareCos"
                                         ValueChanged="RangeBase_OnValueChanged"></Slider>
@@ -300,21 +290,21 @@
                         <Canvas x:Name="CanvasSquare">
                             <Grid x:Name="Squares"
                                   HorizontalAlignment="Left"
-                                  Width="390"
-                                  Height="570">
-                                <Rectangle Width="200" Height="200" Stroke="Black" Fill="Aqua">
-                                </Rectangle>
-                                <Rectangle Width="145" Height="145" Stroke="Black" Fill="Bisque">
-                                    <Rectangle.LayoutTransform>
-                                        <RotateTransform Angle="60"/>
-                                    </Rectangle.LayoutTransform>
-                                </Rectangle>
-                                <Rectangle Width="104" Height="104" Stroke="Black" Fill="Blue">
-                                    <Rectangle.LayoutTransform>
-                                        <RotateTransform Angle="120"/>
-                                    </Rectangle.LayoutTransform>
-                                </Rectangle>
-                            </Grid>
+                                  MinWidth="390"
+                                  MinHeight="570">
+                                    <Rectangle Width="200" Height="200" Stroke="Black" Fill="Aqua">
+                                    </Rectangle>
+                                    <Rectangle Width="145" Height="145" Stroke="Black" Fill="Bisque">
+                                        <Rectangle.LayoutTransform>
+                                            <RotateTransform Angle="60"/>
+                                        </Rectangle.LayoutTransform>
+                                    </Rectangle>
+                                    <Rectangle Width="104" Height="104" Stroke="Black" Fill="Blue">
+                                        <Rectangle.LayoutTransform>
+                                            <RotateTransform Angle="120"/>
+                                        </Rectangle.LayoutTransform>
+                                    </Rectangle>
+                                </Grid>
                         </Canvas>
                     </Grid>
                 </TabItem.Content>
@@ -362,7 +352,7 @@
                                 <TextBlock TextAlignment="Center">Скорость анимации</TextBlock>
                                 <Slider VerticalAlignment="Bottom"
                                         Margin="10 0"
-                                        Minimum="0"
+                                        Minimum="0.01"
                                         Maximum="2"
                                         Value="1"
                                         x:Name="AnimationSpeed"
@@ -373,7 +363,12 @@
                         </StackPanel>
                         <Grid x:Name="Animations"
                               HorizontalAlignment="Left"
-                              Width="390">
+                              MinWidth="390"
+                              MinHeight="570"
+                              ClipToBounds="True">
+                            <Grid.Clip>
+                                <RectangleGeometry Rect="0,0,370,570"></RectangleGeometry>
+                            </Grid.Clip>
                             <Rectangle x:Name="RectangleAnimation" Width="100" Height="100" Margin="0 0 200 0" Stroke="Black" RenderTransformOrigin="1,1">
                                 <Rectangle.RenderTransform>
                                     <RotateTransform x:Name="MyAnimation" Angle="0" />

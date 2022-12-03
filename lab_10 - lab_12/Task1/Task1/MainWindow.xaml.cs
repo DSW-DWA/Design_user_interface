@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlTypes;
+using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -9,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NumericUpDownLib;
 
 namespace Task1
 {
@@ -22,7 +27,6 @@ namespace Task1
             InitializeComponent();
             _anim1 = (BeginStoryboard)this.Resources["MyStoryboardAfter"];
             _anim = (BeginStoryboard)this.Resources["MyStoryboard"];
-            _ren = MyAnimation;
         }
         private BeginStoryboard _anim;
         private BeginStoryboard _anim1;
@@ -74,10 +78,12 @@ namespace Task1
             if (ti == DrawRectangle)
             {
                 Rectangles.Children.Clear();
-                var height = Convert.ToInt32(RectangleSideA.Text) + 20;
-                var width = Convert.ToInt32(RectangleSideB.Text) + 20;
+                var height = Convert.ToInt32(RectangleSideA.Text);
+                var width = Convert.ToInt32(RectangleSideB.Text);
                 var k = Convert.ToInt32(RectangleCount.Text);
-                var thick = Convert.ToInt32(RectangStrokeThick.Text);
+                var step = Math.Min(height, width) / k;
+                height += step;
+                width += step;
                 var thickType = "2400";
                 if (ComboBoxRectangleStrokeType.Text == "Штрихованные")
                 {
@@ -87,21 +93,35 @@ namespace Task1
                 {
                     thickType = "1";
                 }
+
+                var r = new Random();
+                var brush = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
+                    (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
+                if (ComboBoxRectangleStrokeColor.IsEnabled)
+                {
+                    var cbi = ComboBoxRectangleStrokeColor.SelectedValue.ToString();
+                    brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(cbi));
+                }
                 for (int i = 0; i < k; i++)
                 {
-                    if (width > 20 && height > 20)
+                    if (width > step && height > step)
                     {
                         var rec = new Rectangle();
-                        rec.Stroke = Brushes.Black;
-                        rec.Height = height - 20;
-                        rec.Width = width - 20;
-                        rec.StrokeThickness = thick;
+                        rec.Stroke = brush;
+                        rec.Height = height - step;
+                        rec.Width = width - step;
                         rec.StrokeDashArray = DoubleCollection.Parse(thickType);
-                        height -= 20;
-                        width -= 20;
+                        height -= step;
+                        width -= step;
                         Rectangles.Children.Add(rec);
+                        if (!ComboBoxRectangleStrokeColor.IsEnabled)
+                        {
+                            brush = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
+                                (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
+                        }
                     }
                 }
+                return;
             }
             if (ti == DrawSquare)
             {
@@ -159,10 +179,12 @@ namespace Task1
             var ti = (TabItem)Draw.SelectedItem;
             if (ti == DrawRectangle){
                 Rectangles.Children.Clear();
-                var height = Convert.ToInt32(RectangleSideA.Text) + 20;
-                var width = Convert.ToInt32(RectangleSideB.Text) + 20;
+                var height = Convert.ToInt32(RectangleSideA.Text);
+                var width = Convert.ToInt32(RectangleSideB.Text);
                 var k = Convert.ToInt32(RectangleCount.Text);
-                var thick = Convert.ToInt32(RectangStrokeThick.Text);
+                var step = Math.Min(height, width) / k;
+                height += step;
+                width += step;
                 var thickType = "2400";
                 if (ComboBoxRectangleStrokeType.Text == "Штрихованные")
                 {
@@ -176,49 +198,24 @@ namespace Task1
                 var r = new Random();
                 var brush = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
                     (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
-                var cbi = ComboBoxRectangleStrokeColor;
-                if (cbi.Text == "Red")
+                if (ComboBoxRectangleStrokeColor.IsEnabled)
                 {
-                    brush = Brushes.Red;
-                }
-                if (cbi.Text == "Green")
-                {
-                    brush = Brushes.DarkGreen;
-                }
-                if (cbi.Text == "Black")
-                {
-                    brush = Brushes.Black;
-                }
-                if (cbi.Text == "Yellow")
-                {
-                    brush = Brushes.Yellow;
-                }
-                if (cbi.Text == "Orange")
-                {
-                    brush = Brushes.Orange;
-                }
-                if (cbi.Text == "White")
-                {
-                    brush = Brushes.White;
-                }
-                if (cbi.Text == "Blue")
-                {
-                    brush = Brushes.Blue;
+                    var cbi = ComboBoxRectangleStrokeColor.SelectedValue.ToString();
+                    brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(cbi));
                 }
                 for (int i = 0; i < k; i++)
                 {
-                    if (width > 20 && height > 20)
+                    if (width > step && height > step)
                     {
                         var rec = new Rectangle();
                         rec.Stroke = brush;
-                        rec.Height = height - 20;
-                        rec.Width = width - 20;
-                        rec.StrokeThickness = thick;
+                        rec.Height = height - step;
+                        rec.Width = width - step;
                         rec.StrokeDashArray = DoubleCollection.Parse(thickType);
-                        height -= 20;
-                        width -= 20;
+                        height -= step;
+                        width -= step;
                         Rectangles.Children.Add(rec);
-                        if (cbi.Text == "Random")
+                        if (!ComboBoxRectangleStrokeColor.IsEnabled)
                         {
                             brush = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
                                 (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
@@ -291,12 +288,16 @@ namespace Task1
                 _rectanglesAuto = true;
                 if (ti == DrawRectangle) RectanglesRewrite.IsEnabled = false;
                 if (ti == DrawSquare) SquareRewrite.IsEnabled = false;
+                AutoRewrite.IsChecked = true;
+                Rewrite.IsEnabled = false;
             }
             else
             {
                 _rectanglesAuto = false;
                 if (ti == DrawRectangle) RectanglesRewrite.IsEnabled = true;
                 if (ti == DrawSquare) SquareRewrite.IsEnabled = true;
+                AutoRewrite.IsChecked = false;
+                Rewrite.IsEnabled = true;
             }
 
             ButtonBase_OnClick_Rectangles();
@@ -326,7 +327,8 @@ namespace Task1
                 }
                 var si = (TabItem)Draw.SelectedItem;
                 var gr = (Grid)si.Content;
-                var gr1 = (Grid)gr.Children[1];
+                var cn = (Canvas)gr.Children[1];
+                var gr1 = (Grid)cn.Children[0];
                 if (gr1!= null)
                 {
                     foreach (UIElement rectanglesChild in gr1.Children)
@@ -339,56 +341,23 @@ namespace Task1
         }
         private void ComboBoxRectangleStrokeColor_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (CheckBoxRectangleRandom != null) CheckBoxRectangleRandom.IsChecked = false;
             if (_rectanglesAuto)
             {
                 Random r = new Random();
-                Brush brush = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255), 
-                    (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
                 var cb = (ComboBox)sender;
-                var cbi = (ComboBoxItem)cb.SelectedItem;
-                if (cbi.Content.ToString() == "Red")
-                {
-                    brush = Brushes.Red;
-                }
-                if (cbi.Content.ToString() == "Green")
-                {
-                    brush = Brushes.DarkGreen;
-                }
-                if (cbi.Content.ToString() == "Black")
-                {
-                    brush = Brushes.Black;
-                }
-                if (cbi.Content.ToString() == "Yellow")
-                {
-                    brush = Brushes.Yellow;
-                }
-                if (cbi.Content.ToString() == "Orange")
-                {
-                    brush = Brushes.Orange;
-                }
-                if (cbi.Content.ToString() == "White")
-                {
-                    brush = Brushes.White;
-                }
-                if (cbi.Content.ToString() == "Blue")
-                {
-                    brush = Brushes.Blue;
-                }
-
+                var cbi = cb.SelectedValue.ToString();
+                var brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(cbi));
                 var si = (TabItem)Draw.SelectedItem;
                 var gr = (Grid)si.Content;
-                var gr1 = (Grid)gr.Children[1];
+                var cn = (Canvas)gr.Children[1];
+                var gr1 = (Grid)cn.Children[0];
                 if (gr1!= null)
                 {
                     foreach (UIElement rectanglesChild in gr1.Children)
                     {
                         var rec = (Rectangle)rectanglesChild;
                         rec.Stroke = brush;
-                        if (cbi.Content.ToString() == "Random")
-                        {
-                            brush = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
-                                (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
-                        }
                     }
                 }
             }
@@ -417,6 +386,11 @@ namespace Task1
                     RectangleSideA.Text = "600";
 
                 }
+                if (width <= 0)
+                {
+                    e.Handled = true;
+                    RectangleSideA.Text = "1";
+                }
 
                 if (width > 600)
                 {
@@ -424,11 +398,22 @@ namespace Task1
                     RectangleSideB.Text = "600";
                 }
 
-                if (height / 20 < k || width / 20 < k)
+                if (width <= 0)
                 {
-                    var tmp = Math.Min(height / 20, width / 20);
                     e.Handled = true;
-                    RectangleCount.Text = tmp.ToString();
+                    RectangleSideB.Text = "1";
+                }
+                
+                if (k > 9)
+                {
+                    e.Handled = true;
+                    RectangleCount.Text = "9";
+                }
+
+                if (k <= 0)
+                {
+                    e.Handled = true;
+                    RectangleCount.Text = "1";
                 }
             }
 
@@ -436,11 +421,30 @@ namespace Task1
             {
                 var tb = (TextBox)sender;
                 var heightText = SquareSide.Text + (tb.Name == "SquareSide" ? e.Text : "");
+                var countText = SquareCount.Text + (tb == SquareCount ? e.Text : "");
                 var sd = Convert.ToInt32(heightText);
+                var count = Convert.ToInt32(countText);
                 if (sd > 600)
                 {
                     e.Handled = true;
                     SquareSide.Text = "600";
+                }
+
+                if (sd <= 0)
+                {
+                    e.Handled = true;
+                    SquareSide.Text = "1";
+                }
+
+                if (count > 9)
+                {
+                    e.Handled = true;
+                    SquareCount.Text = "9";
+                }
+                if (count <= 0)
+                {
+                    e.Handled = true;
+                    SquareCount.Text = "1";
                 }
             }
             if (ti == DrawAnimation)
@@ -464,29 +468,41 @@ namespace Task1
                 var height = Convert.ToInt32(heightText);
                 var width = Convert.ToInt32(widthText);
                 var k = Convert.ToInt32(kText);
-                if (height > 600)
+                if (height > 500)
                 {
-                    RectangleSideA.Text = "600";
+                    RectangleSideA.Text = "500";
 
                 }
 
-                if (width > 600)
+                if (width > 500)
                 {
-                    RectangleSideB.Text = "600";
+                    RectangleSideB.Text = "500";
                 }
 
-                if (height / 20 < k || width / 20 < k)
+                if (k > 10)
                 {
-                    var tmp = Math.Min(height / 20, width / 20);
-                    RectangleCount.Text = tmp.ToString();
+                    RectangleCount.Text = "10";
+                }
+            }
+            if (ti == DrawSquare)
+            {
+                var tb = (TextBox)sender;
+                var heightText = SquareSide.Text;
+                var sd = Convert.ToInt32(heightText);
+                if (sd > 500)
+                {
+                    SquareSide.Text = "500";
+                }
+            }
+            if (ti == DrawAnimation)
+            {
+                var sd = Convert.ToInt32(AnimationSide.Text);
+                if (sd > 130)
+                {
+                    AnimationSide.Text = "130";
                 }
             }
         }
-        private void DrawRectangle_OnInitialized(object sender, EventArgs e)
-        {
-            _rectanglesAuto = false;
-        }
-
         private void RangeBase_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (_rectanglesAuto)
@@ -500,11 +516,13 @@ namespace Task1
             var r = RectangleAnimation.Margin.Right;
             var side = RectangleAnimation.Width;
             RectangleAnimation.Margin = new Thickness(0, 0, r - 2 * side, 0);
-            _anim1.Storyboard.Begin(this, true);
+            _anim.Storyboard.Begin(this, true);
         }
 
         private void ButtonStart_OnClick(object sender, RoutedEventArgs e)
         {
+            _anim.Storyboard.Stop(this);
+            _anim1.Storyboard.Stop(this);
             var side = RectangleAnimation.Width;
             RectangleAnimation.Margin = new Thickness(0, 0, 2 * side, 0);
             _anim.Storyboard.Begin(this, true);
@@ -525,11 +543,16 @@ namespace Task1
 
         private void DrawRectangle_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            _rectanglesAuto = false;
-            if (CheckBoxRectangles != null) CheckBoxRectangles.IsChecked = false;
-            if (CheckBoxSquare != null) CheckBoxSquare.IsChecked = false;
-            if (RectanglesRewrite != null) RectanglesRewrite.IsEnabled = true;
-            if (SquareRewrite != null) SquareRewrite.IsEnabled = true;
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                _rectanglesAuto = false;
+                if (CheckBoxRectangles != null) CheckBoxRectangles.IsChecked = false;
+                if (CheckBoxSquare != null) CheckBoxSquare.IsChecked = false;
+                if (RectanglesRewrite != null) RectanglesRewrite.IsEnabled = true;
+                if (SquareRewrite != null) SquareRewrite.IsEnabled = true;
+                AutoRewrite.IsChecked = false;
+                Rewrite.IsEnabled = true;
+            }
         }
         
         private void SaveButton_OnClick(object sender, RoutedEventArgs e)
@@ -538,12 +561,19 @@ namespace Task1
             if (ti == DrawRectangle)
             {
                 var rect = new Rect(CanvasRectangles.RenderSize);
+                var sz = new Size(Convert.ToInt32(RectangleSideB.Text), Convert.ToInt32(RectangleSideA.Text));
+                var rect1 = new Rect(sz);
                 var visual = new DrawingVisual();
-                var height = Convert.ToInt32(RectangleSideA.Text);
-                var width = Convert.ToInt32(RectangleSideB.Text);
                 using (var dc = visual.RenderOpen())
                 {
-                    dc.DrawRectangle(new VisualBrush(CanvasRectangles), null, rect);
+                    var pt = new Point(0, Convert.ToInt32(CanvasRectangles.ActualHeight)-50);
+                    var txt = new FormattedText(
+                        $"Колл-во: {RectangleCount.Text}, Ширина: {RectangleSideB.Text}, Высота: {RectangleSideA.Text}",
+                        CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(SystemFonts.MessageFontFamily.Source), 20,
+                        Brushes.Crimson);
+                    rect1.Location = new Point(rect.Width / 2 - rect1.Width / 2, rect.Height / 2 - rect1.Height / 2);
+                    dc.DrawText(txt,pt);
+                    dc.DrawRectangle(new VisualBrush(Rectangles), null, rect1);
                 }
 
                 var bitmap = new RenderTargetBitmap(
@@ -560,10 +590,19 @@ namespace Task1
             if (ti == DrawSquare)
             {
                 var rect = new Rect(CanvasSquare.RenderSize);
+                var sz = new Size(Convert.ToInt32(SquareSide.Text),Convert.ToInt32(SquareSide.Text));
+                var rect1 = new Rect(sz);
                 var visual = new DrawingVisual();
                 using (var dc = visual.RenderOpen())
                 {
-                    dc.DrawRectangle(new VisualBrush(CanvasSquare), null, rect);
+                    var pt = new Point(0, Convert.ToInt32(CanvasSquare.ActualHeight)-50);
+                    var txt = new FormattedText(
+                        $"Колл-во: {SquareCount.Text}, Сторона: {SquareSide.Text}, Косинус угла: {SquareCos.Value}",
+                        CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(SystemFonts.MessageFontFamily.Source), 20,
+                        Brushes.Crimson);
+                    rect1.Location = new Point(rect.Width / 2 - rect1.Width / 2, rect.Height / 2 - rect1.Height / 2);
+                    dc.DrawText(txt,pt);
+                    dc.DrawRectangle(new VisualBrush(Squares), null, rect1);
                 }
 
                 var bitmap = new RenderTargetBitmap(
@@ -574,7 +613,112 @@ namespace Task1
                 using (var file = File.OpenWrite("Квадраты.bmp"))
                 {
                     encoder.Save(file);
+                }
+
+            }
+        }
+
+        private void MenuItem_OnClick2(object sender, RoutedEventArgs e)
+        {
+            var ti = (TabItem)Draw.SelectedItem;
+            if (_rectanglesAuto)
+            {
+                _rectanglesAuto = false;
+                if (ti == DrawRectangle) RectanglesRewrite.IsEnabled = true;
+                if (ti == DrawSquare) SquareRewrite.IsEnabled = true;
+                if (ti == DrawRectangle) CheckBoxRectangles.IsChecked = false;
+                if (ti == DrawSquare) CheckBoxSquare.IsChecked = false;
+            }
+            ButtonBase_OnClick_Rectangles();
+        }
+
+        private void MenuItem_OnClick1(object sender, RoutedEventArgs e)
+        {
+            var ti = (TabItem)Draw.SelectedItem;
+            var cmi = (MenuItem)sender;
+            var cm = (ContextMenu)cmi.Parent;
+            var rewrite = (MenuItem)cm.Items[2];
+            if (!_rectanglesAuto)
+            {
+                _rectanglesAuto = true;
+                if (ti == DrawRectangle) RectanglesRewrite.IsEnabled = false;
+                if (ti == DrawSquare) SquareRewrite.IsEnabled = false;
+                if (ti == DrawRectangle) CheckBoxRectangles.IsChecked = true;
+                if (ti == DrawSquare) CheckBoxSquare.IsChecked = true;
+                cmi.IsChecked = true;
+                rewrite.IsEnabled = false;
+            }
+            else
+            {
+                _rectanglesAuto = false;
+                if (ti == DrawRectangle) RectanglesRewrite.IsEnabled = true;
+                if (ti == DrawSquare) SquareRewrite.IsEnabled = true;
+                if (ti == DrawRectangle) CheckBoxRectangles.IsChecked = false;
+                if (ti == DrawSquare) CheckBoxSquare.IsChecked = false;
+                cmi.IsChecked = false;
+                rewrite.IsEnabled = true;
+            }
+
+            ButtonBase_OnClick_Rectangles();
+        }
+
+        private void MainWindow_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var win = Application.Current.MainWindow;
+            if (Rectangles != null) Rectangles.Width = win.ActualWidth - 210;
+            if (Rectangles != null) Rectangles.Height = win.ActualHeight - 30;
+            if (Squares != null) Squares.Width = win.ActualWidth - 210;
+            if (Squares != null) Squares.Height = win.ActualHeight - 30;
+            if (Animations != null) Animations.Width = win.ActualWidth - 210;
+            if (Animations != null) Animations.Height = win.ActualHeight - 30;
+        }
+
+        private void RectangleSideA_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (_rectanglesAuto )
+            {
+                ButtonBase_OnClick_Rectangles();
+            }
+        }
+        
+        private void RectangleSideA_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (RectangleSideA.Text == "") RectangleSideA.Text = "0";
+            if (RectangleCount.Text == "") RectangleCount.Text = "0";
+            if (RectangleSideB.Text == "") RectangleSideB.Text = "0";
+            if (_rectanglesAuto)
+            {
+                ButtonBase_OnClick_Rectangles();
+            }
+        }
+
+        private void RectangleSideB_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (RectangleSideA.Text == "") RectangleSideA.Text = "0";
+                if (RectangleCount.Text == "") RectangleCount.Text = "0";
+                if (RectangleSideB.Text == "") RectangleSideB.Text = "0";
+                if (SquareSide.Text == "") SquareSide.Text = "0";
+                if (SquareCount.Text == "") SquareCount.Text = "0";
+                if (_rectanglesAuto)
+                {
+                    ButtonBase_OnClick_Rectangles();
                 } 
+            }
+        }
+
+        private void CheckBoxRectangleRandom_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (CheckBoxRectangleRandom.IsChecked == true)
+            {
+                ComboBoxRectangleStrokeColor.IsEnabled = false;
+                if (_rectanglesAuto) ButtonBase_OnClick_Rectangles();
+            }
+            else
+            {
+                ComboBoxRectangleStrokeColor.IsEnabled = true;
+                if (_rectanglesAuto) ButtonBase_OnClick_Rectangles();
             }
         }
     }

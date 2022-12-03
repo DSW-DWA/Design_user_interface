@@ -14,3 +14,6 @@ C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design
 C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1.csproj.CoreCompileInputs.cache
 C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1.exe
 C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1.pdb
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\bin\Debug\NumericUpDown.dll
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\bin\Debug\NumericUpDownLib.dll
+C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\lab_10 - lab_12\Task1\Task1\obj\Debug\Task1.csproj.CopyComplete
