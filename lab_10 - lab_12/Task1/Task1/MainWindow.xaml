@@ -329,7 +329,8 @@
                                              x:FieldModifier="private" 
                                              Text="100" 
                                              PreviewTextInput="RectangleCount_OnPreviewTextInput"
-                                             TextChanged="Rectangle_OnTextChanged"/>
+                                             LostFocus="RectangleSideA_OnLostFocus"
+                                             KeyDown="RectangleSideB_OnKeyDown"/>
                                     <Button FontFamily="Marlett" 
                                             FontSize="7" 
                                             Content="5"
@@ -362,14 +363,9 @@
                             <Button Margin="10 10 10 0" Content="Стоп" Name="StopButtonAnimation" Click="StopButtonAnimation_OnClick"></Button>
                         </StackPanel>
                         <Grid x:Name="Animations"
-                              HorizontalAlignment="Left"
                               MinWidth="390"
-                              MinHeight="570"
-                              ClipToBounds="True">
-                            <Grid.Clip>
-                                <RectangleGeometry Rect="0,0,370,570"></RectangleGeometry>
-                            </Grid.Clip>
-                            <Rectangle x:Name="RectangleAnimation" Width="100" Height="100" Margin="0 0 200 0" Stroke="Black" RenderTransformOrigin="1,1">
+                              HorizontalAlignment="Left">
+                            <Rectangle x:Name="RectangleAnimation" Width="100" Height="100" Margin="0 0 290 0" HorizontalAlignment="Right" Stroke="Black" RenderTransformOrigin="1,1">
                                 <Rectangle.RenderTransform>
                                     <RotateTransform x:Name="MyAnimation" Angle="0" />
                                 </Rectangle.RenderTransform>

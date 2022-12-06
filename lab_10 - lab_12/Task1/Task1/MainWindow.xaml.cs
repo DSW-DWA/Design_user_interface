@@ -27,6 +27,7 @@ namespace Task1
             InitializeComponent();
             _anim1 = (BeginStoryboard)this.Resources["MyStoryboardAfter"];
             _anim = (BeginStoryboard)this.Resources["MyStoryboard"];
+            _ren = MyAnimation;
         }
         private BeginStoryboard _anim;
         private BeginStoryboard _anim1;
@@ -165,8 +166,8 @@ namespace Task1
                 var rec = new Rectangle();
                 rec.Width = Convert.ToInt32(AnimationSide.Text);
                 rec.Height = Convert.ToInt32(AnimationSide.Text);
-                rec.Name = "RectangleAnimation";
-                rec.Margin = new Thickness(0, 0, 2 * rec.Width, 0);
+                rec.HorizontalAlignment = HorizontalAlignment.Right;
+                rec.Margin =  new Thickness(0, 0, Animations.ActualWidth - Convert.ToInt32(AnimationSide.Text) - 10, 0);
                 rec.Stroke = Brushes.Black;
                 rec.RenderTransformOrigin = new Point(1,1);
                 rec.RenderTransform = _ren;
@@ -239,6 +240,7 @@ namespace Task1
                 rec.Height = side;
                 rec.Width = side;
                 rec.Fill = brushFill;
+                
                 brushFill = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
                     (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
                 if (k != 0)Squares.Children.Add(rec);
@@ -270,8 +272,8 @@ namespace Task1
                 var rec = new Rectangle();
                 rec.Width = Convert.ToInt32(AnimationSide.Text);
                 rec.Height = Convert.ToInt32(AnimationSide.Text);
-                rec.Name = "RectangleAnimation";
-                rec.Margin = new Thickness(0, 0, 2 * rec.Width, 0);
+                rec.HorizontalAlignment = HorizontalAlignment.Right;
+                rec.Margin =  new Thickness(0, 0, Animations.ActualWidth - Convert.ToInt32(AnimationSide.Text) , 0);
                 rec.Stroke = Brushes.Black;
                 rec.RenderTransformOrigin = new Point(1,1);
                 rec.RenderTransform = _ren;
@@ -513,18 +515,22 @@ namespace Task1
 
         private void Timeline_OnCompleted(object sender, EventArgs e)
         {
-            var r = RectangleAnimation.Margin.Right;
-            var side = RectangleAnimation.Width;
-            RectangleAnimation.Margin = new Thickness(0, 0, r - 2 * side, 0);
-            _anim.Storyboard.Begin(this, true);
+            var rec = (Rectangle)(Animations.Children[0]);
+            var r = rec.Margin.Right;
+            var side = Convert.ToInt32(AnimationSide.Text);
+            var right = r - side;
+            if (right - side > 0)
+            {
+                rec.Margin = new Thickness(0, 0, right, 0);
+                _anim.Storyboard.Begin(this, true);
+            }
         }
 
         private void ButtonStart_OnClick(object sender, RoutedEventArgs e)
         {
             _anim.Storyboard.Stop(this);
-            _anim1.Storyboard.Stop(this);
-            var side = RectangleAnimation.Width;
-            RectangleAnimation.Margin = new Thickness(0, 0, 2 * side, 0);
+            var rec = (Rectangle)(Animations.Children[0]);
+            rec.Margin =  new Thickness(0, 0, Animations.ActualWidth - Convert.ToInt32(AnimationSide.Text) , 0);
             _anim.Storyboard.Begin(this, true);
         }
 
@@ -683,10 +689,11 @@ namespace Task1
         
         private void RectangleSideA_OnLostFocus(object sender, RoutedEventArgs e)
         {
+            var ti = (TabItem)Draw.SelectedItem;
             if (RectangleSideA.Text == "") RectangleSideA.Text = "0";
             if (RectangleCount.Text == "") RectangleCount.Text = "0";
             if (RectangleSideB.Text == "") RectangleSideB.Text = "0";
-            if (_rectanglesAuto)
+            if (_rectanglesAuto || ti == DrawAnimation)
             {
                 ButtonBase_OnClick_Rectangles();
             }
@@ -694,6 +701,7 @@ namespace Task1
 
         private void RectangleSideB_OnKeyDown(object sender, KeyEventArgs e)
         {
+            var ti = (TabItem)Draw.SelectedItem;
             if (e.Key == Key.Enter)
             {
                 if (RectangleSideA.Text == "") RectangleSideA.Text = "0";
@@ -701,7 +709,7 @@ namespace Task1
                 if (RectangleSideB.Text == "") RectangleSideB.Text = "0";
                 if (SquareSide.Text == "") SquareSide.Text = "0";
                 if (SquareCount.Text == "") SquareCount.Text = "0";
-                if (_rectanglesAuto)
+                if (_rectanglesAuto || ti == DrawAnimation)
                 {
                     ButtonBase_OnClick_Rectangles();
                 } 
