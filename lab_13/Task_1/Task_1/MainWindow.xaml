@@ -5,17 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task_1"
         mc:Ignorable="d"
+        Background="Aqua"
         Title="MainWindow" Height="350" Width="525">
-    <Grid x:Name="Grid">
-        <Canvas>
-            <Label Name="lbl2" Canvas.Top="100" Canvas.Left="30" Padding="10"
-                   BorderBrush="LightBlue" BorderThickness="2" MouseDown="lbl1_MouseDown">Всем пока (</Label>
-            <Label Name="lbl1" Canvas.Top="40" Canvas.Left="30" Padding="10"
-                   BorderBrush="LightBlue" BorderThickness="2" MouseDown="lbl1_MouseDown">Всем привет!</Label>
-            <Border Canvas.Top="75" Canvas.Left="250" BorderBrush="Black" BorderThickness="2">
-                <TextBlock MinWidth="100" MinHeight="30" FontSize="16" 
-                           Name="txtTarget" AllowDrop="True" Drop="txtTarget_Drop"></TextBlock>
-            </Border>
-        </Canvas>
+    <Grid Name="Grid" Background="Transparent" Drop="Grid_OnDrop" AllowDrop="True">
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 10 0 0" 
+               MouseDown="Label_MouseDown" AllowDrop="False">Волк</Label>
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100 10 0 0" 
+               MouseDown="Label_MouseDown" AllowDrop="False">Заяц</Label>
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200 10 0 0" 
+               MouseDown="Label_MouseDown" AllowDrop="False">Лиса</Label>
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="300 10 0 0" 
+               MouseDown="Label_MouseDown" AllowDrop="False">Медведь</Label>
+       <TextBlock Height="30" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Background="White"
+                  AllowDrop="True" Drop="UIElement_OnDrop" MouseDown="UIElement_OnMouseDown"></TextBlock>
+       <TextBlock Height="30" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100 0 0 10" Background="White"
+                  AllowDrop="True" Drop="UIElement_OnDrop" MouseDown="UIElement_OnMouseDown"></TextBlock>
+       <TextBlock Height="30" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="200 0 0 10" Background="White"
+                  AllowDrop="True" Drop="UIElement_OnDrop" MouseDown="UIElement_OnMouseDown"></TextBlock>
+       <TextBlock Height="30" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="300 0 0 10" Background="White"
+                  AllowDrop="True" Drop="UIElement_OnDrop" MouseDown="UIElement_OnMouseDown"></TextBlock> 
     </Grid>
 </Window>
