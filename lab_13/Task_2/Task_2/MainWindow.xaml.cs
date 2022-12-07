@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Shapes;
 using Microsoft.SqlServer.Server;
 
 namespace Task_2
@@ -47,6 +50,8 @@ namespace Task_2
                                 item.Content = lbInsert.Content;
                                 ListBox1.Items.Add(item);
                             }
+
+                            TextBlockInfo.Text = $"{lb.SelectedItems.Count} позиций доабавлено в ListBox1";
                         }
 
                         if (lb == ListBox2)
@@ -62,6 +67,7 @@ namespace Task_2
                             {
                                 ListBox2.Items.Remove(lbSelectedItem);
                             }
+                            TextBlockInfo.Text = $"{del.Count} позиций удалено из ListBox2";
                         }
                     }
                     else
@@ -70,6 +76,7 @@ namespace Task_2
                         var txt = TextBox1.Text;
                         TextBox1.Text = lbi.Content.ToString();
                         lbi.Content = txt;
+                        TextBlockInfo.Text = $"Изименина первая строка {lb.Name}";
                     }
                 }
             }
@@ -96,8 +103,9 @@ namespace Task_2
                             var lbInsert = (ListBoxItem)lbSelectedItem;
                             var item = new ListBoxItem();
                             item.Content = lbInsert.Content;
-                            ListBox1.Items.Add(item);
+                            lbMain.Items.Add(item);
                         }
+                        TextBlockInfo.Text = $"{lb.SelectedItems.Count} позиций персено из {lb.Name} в {lbMain.Name}";
                     }
                 }
             }
@@ -111,14 +119,30 @@ namespace Task_2
                         var lbi = new ListBoxItem();
                         lbi.Content = (string)data;
                         lbMain.Items.Insert(0,lbi);
+                        TextBlockInfo.Text = $"Позиция перенесена в начало {lbMain.Name}";
                     }
                     else
                     {
                         var lbi = new ListBoxItem();
                         lbi.Content = (string)data;
                         lbMain.Items.Add(lbi);
+                        TextBlockInfo.Text = $"Позиция перенесена в конец {lbMain.Name}";
                     }
                 }
+            }
+            if (_dragSource.GetType() == typeof(Rectangle))
+            {
+                var lbMain = (ListBox)sender;
+                var data = e.Data.GetData(typeof(Point));
+                if (data != null)
+                {
+                    var point = (Point)data;
+                    var r = (byte)(255*(1 - (point.X / 200)));
+                    var b = (byte)(255*(point.X / 200));
+                    var brush = new SolidColorBrush(Color.FromRgb(r,0,b));
+                    lbMain.Background = brush;
+                }
+                TextBlockInfo.Text = $"Фон {lbMain.Name} изменил цвет";
             }
         }
 
@@ -127,10 +151,6 @@ namespace Task_2
             _isLeftMouse = true;
             _dragSource = (TextBox)sender;
             if (TextBox1.Text != "") DragDrop.DoDragDrop(_dragSource, TextBox1.Text, DragDropEffects.Move);
-            if (Keyboard.IsKeyDown(Key.LeftCtrl))
-            {
-                Clipboard.SetText(TextBox1.Text);
-            }
             
             e.Handled = false;
         }
@@ -142,10 +162,6 @@ namespace Task_2
                 _isLeftMouse = false;
                 _dragSource = TextBox1;
                 DragDrop.DoDragDrop(e.Source as DependencyObject, TextBox1.Text, DragDropEffects.Move);
-                if (Keyboard.IsKeyDown(Key.LeftCtrl))
-                {
-                    Clipboard.SetText(TextBox1.Text);
-                }
 
                 e.Handled = true;
             }
@@ -182,14 +198,83 @@ namespace Task_2
             }
         }
 
-        private void TextBox1_OnPreviewKeyDown(object sender, KeyEventArgs e)
+
+        private void TextBox1_OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (Keyboard.IsKeyDown(Key.RightCtrl))
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Clipboard.SetText(TextBox1.Text);
             }
+        }
+        private void ReadFromFileButton_OnDrop(object sender, DragEventArgs e)
+        {
+            if (_dragSource.GetType() == typeof(ListBox))
+            {
+                var data = e.Data.GetData(typeof(ListBox));
+                if (data != null)
+                {
+                    var lb = (ListBox)data;
+                    var lines = File.ReadAllLines("Lab13.txt");
+                    foreach (var line in lines)
+                    {
+                        var lbi = new ListBoxItem();
+                        lbi.Content = line;
+                        lb.Items.Add(lbi);
+                    }
+                    TextBlockInfo.Text = $"Данные считанны из Lab13.txt в {lb.Name}";
+                }
+            }
+        }
 
-            e.Handled = false;
+        private void SaveFileButton_OnDrop(object sender, DragEventArgs e)
+        {
+            if (_dragSource.GetType() == typeof(ListBox))
+            {
+                var data = e.Data.GetData(typeof(ListBox));
+                if (data != null)
+                {
+                    var lb = (ListBox)data;
+                    var lines = new List<string>();
+                    foreach (var lbSelectedItem in lb.Items)
+                    {
+                        var lbi = (ListBoxItem)lbSelectedItem;
+                        lines.Add(lbi.Content.ToString());
+                    }
+                    File.WriteAllLines("Lab13.txt", lines.ToArray());
+                    TextBlockInfo.Text = $"Данные из {lb.Name} записанны в Lab13.txt";
+                }
+            }
+        }
+
+        private void ColorRectangle_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var point = e.GetPosition(this);
+            _dragSource = ColorRectangle;
+            var pt = Grid.TranslatePoint(point, ColorRectangle);
+            DragDrop.DoDragDrop(_dragSource, pt, DragDropEffects.Copy);
+        }
+
+        private void ColorRectangle_OnDrop(object sender, DragEventArgs e)
+        {
+            if (_dragSource.GetType() == typeof(ListBox))
+            {
+                var data = e.Data.GetData(typeof(ListBox));
+                if (data != null)
+                {
+                    var lb = (ListBox)data;
+                    var point = e.GetPosition(this);
+                    var pt = Grid.TranslatePoint(point, ColorRectangle);
+                    var r = (byte)(255*(1 - (pt.X / 200)));
+                    var b = (byte)(255*(pt.X / 200));
+                    var brush = new SolidColorBrush(Color.FromRgb(r,0,b));
+                    foreach (var lbItem in lb.Items)
+                    {
+                        var lbi = (ListBoxItem)lbItem;
+                        lbi.Foreground = brush;
+                    }
+                    TextBlockInfo.Text = $"Шрифт {lb.Name} изменил цвет";
+                }
+            }
         }
     }
 }

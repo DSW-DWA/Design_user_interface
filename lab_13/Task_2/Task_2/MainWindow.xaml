@@ -7,35 +7,31 @@
         mc:Ignorable="d"
         Background="Aqua"
         Title="MainWindow" Height="400" Width="525">
-    <Grid AllowDrop="True">
-        <TextBlock Width="30" 
-                   Height="20"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   Margin="100 30 0 0">
-            Red
-        </TextBlock>
+    <Grid Name="Grid">
         <Border BorderBrush="Black" 
                 BorderThickness="1" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Top"
                 Margin="10">
-            <TextBlock Width="200"
-                       Name="TextBlockColor"
-                       Height="30" 
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Top"
-                       Margin="10"
-                       TextAlignment="Center">
-                Цвет
-            </TextBlock>
+            <Rectangle Name="ColorRectangle" 
+                       Width="200" 
+                       AllowDrop="True"
+                       Drop="ColorRectangle_OnDrop"
+                       Height="30" MouseDown="ColorRectangle_OnMouseDown">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1.,0">
+                        <GradientStop Color="Red" Offset="0.25" />
+                        <GradientStop Color="Blue" Offset="0.75" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
         </Border>
-        <TextBlock Width="30" 
-                   Height="20"
+        <TextBlock Name="TextBlockInfo" 
+                   Height="20" 
                    VerticalAlignment="Top"
-                   HorizontalAlignment="Right"
-                   Margin="0 30 100 0">
-            Blue
+                   TextAlignment="Center"
+                   Margin="0 50 0 0">
+            Здесь будет информация
         </TextBlock>
         <ListBox Name="ListBox1"
                  Height="200" 
@@ -46,9 +42,13 @@
                  AllowDrop="True"
                  Drop="ListBox_OnDrop"
                  MouseLeftButtonDown="ListBox_OnMouseLeftButtonDown">
-            <ListBoxItem Content="Тест 1"></ListBoxItem>
-            <ListBoxItem Content="Тест 2"></ListBoxItem>
-            <ListBoxItem Content="Тест 3"></ListBoxItem>
+            <ListBoxItem Content="информатика"></ListBoxItem>
+            <ListBoxItem Content="программирование"></ListBoxItem>
+            <ListBoxItem Content="геомертрия"></ListBoxItem>
+            <ListBoxItem Content="матанализ"></ListBoxItem>
+            <ListBoxItem Content="статистика"></ListBoxItem>
+            <ListBoxItem Content="функцианализ"></ListBoxItem>
+            <ListBoxItem Content="ТФКП"></ListBoxItem>
         </ListBox>
         <ListBox Name="ListBox2" 
                  Height="200" 
@@ -59,12 +59,23 @@
                  AllowDrop="True"
                  Drop="ListBox_OnDrop"
                  MouseLeftButtonDown="ListBox_OnMouseLeftButtonDown">
-            <ListBoxItem Content="Тест 1"></ListBoxItem>
-            <ListBoxItem Content="Тест 2"></ListBoxItem>
-            <ListBoxItem Content="Тест 3"></ListBoxItem>
         </ListBox>
-        <Button Height="20" Width="120" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 40 50">Сохранить в файла</Button>
-        <Button Height="20" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="50 0 0 50">Считать из файла</Button>
+        <Button Name="SaveFileButton"
+                Height="20" 
+                Width="120" 
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Right"
+                AllowDrop="True"
+                Drop="SaveFileButton_OnDrop"
+                Margin="0 0 40 50">Сохранить в файла</Button>
+        <Button Name="ReadFromFileButton"
+                Height="20" 
+                Width="100" 
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Left"
+                AllowDrop="True"
+                Drop="ReadFromFileButton_OnDrop"
+                Margin="50 0 0 50">Считать из файла</Button>
         <TextBlock VerticalAlignment="Bottom" TextAlignment="Center" Width="70" Height="20" Margin="0 0 0 40">Новое слово</TextBlock>
         <TextBox Name="TextBox1" 
                  Width="200" 
@@ -72,10 +83,11 @@
                  VerticalAlignment="Bottom" 
                  Margin="0 0 0 10" 
                  AllowDrop="True"
-                 PreviewKeyDown=""
+                 KeyDown="TextBox1_OnKeyDown"
                  PreviewMouseDown="TextBox_OnMouseDown"
                  PreviewMouseRightButtonDown="TextBox1_OnPreviewMouseRightButtonDown"
                  DragDrop.PreviewQueryContinueDrag="QueryContinueDragHandler"
+                 PreviewDragOver="TextBox_OnPreviewDragOver"
                  Drop="TextBox_OnDrop"></TextBox>
     </Grid>
 </Window>
