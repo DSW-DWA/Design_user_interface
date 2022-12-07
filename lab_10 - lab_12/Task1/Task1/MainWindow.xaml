@@ -363,7 +363,8 @@
                             <Button Margin="10 10 10 0" Content="Стоп" Name="StopButtonAnimation" Click="StopButtonAnimation_OnClick"></Button>
                         </StackPanel>
                         <Grid x:Name="Animations"
-                              MinWidth="390"
+                              MinWidth="370"
+                              ClipToBounds="True"
                               HorizontalAlignment="Left">
                             <Rectangle x:Name="RectangleAnimation" Width="100" Height="100" Margin="0 0 290 0" HorizontalAlignment="Right" Stroke="Black" RenderTransformOrigin="1,1">
                                 <Rectangle.RenderTransform>

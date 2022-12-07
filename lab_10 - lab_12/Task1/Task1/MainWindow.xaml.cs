@@ -454,8 +454,11 @@ namespace Task1
                 var sd = Convert.ToInt32(AnimationSide.Text + e.Text);
                 if (sd > 130)
                 {
-                    e.Handled = true;
                     AnimationSide.Text = "130";
+                }
+                if (sd <= 0)
+                {
+                    AnimationSide.Text = "1";
                 }
             }
         }
@@ -481,19 +484,43 @@ namespace Task1
                     RectangleSideB.Text = "500";
                 }
 
-                if (k > 10)
+                if (k > 9)
                 {
-                    RectangleCount.Text = "10";
+                    RectangleCount.Text = "9";
                 }
+                if (height <= 0)
+                {
+                    RectangleSideA.Text = "1";
+                }
+
+                if (width <= 0)
+                {
+                    RectangleSideB.Text = "1";
+                } 
             }
             if (ti == DrawSquare)
             {
                 var tb = (TextBox)sender;
                 var heightText = SquareSide.Text;
+                var count = SquareCount.Text;
                 var sd = Convert.ToInt32(heightText);
+                var k = Convert.ToInt32(count);
                 if (sd > 500)
                 {
                     SquareSide.Text = "500";
+                }
+                
+                if (sd <= 0)
+                {
+                    SquareSide.Text = "1";
+                }
+                if (k > 9)
+                {
+                    SquareCount.Text = "9";
+                }
+                if (k <= 0)
+                {
+                    SquareCount.Text = "1";
                 }
             }
             if (ti == DrawAnimation)
@@ -502,6 +529,10 @@ namespace Task1
                 if (sd > 130)
                 {
                     AnimationSide.Text = "130";
+                }
+                if (sd <= 0)
+                {
+                    AnimationSide.Text = "1";
                 }
             }
         }
@@ -519,11 +550,9 @@ namespace Task1
             var r = rec.Margin.Right;
             var side = Convert.ToInt32(AnimationSide.Text);
             var right = r - side;
-            if (right - side > 0)
-            {
-                rec.Margin = new Thickness(0, 0, right, 0);
-                _anim.Storyboard.Begin(this, true);
-            }
+            rec.Margin = new Thickness(0, 0, right, 0);
+            if (right <= -2 * side)  rec.Margin =  new Thickness(0, 0, Animations.ActualWidth + side , 0);
+            _anim.Storyboard.Begin(this, true);
         }
 
         private void ButtonStart_OnClick(object sender, RoutedEventArgs e)
