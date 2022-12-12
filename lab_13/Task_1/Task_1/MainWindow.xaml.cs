@@ -15,6 +15,7 @@ namespace Task_1
         }
 
         private bool _afterPutIntTextBox;
+        private bool _putInTextBox = false;
         private UIElement _dragSource;
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -28,22 +29,27 @@ namespace Task_1
             var lbl = (Label)e.Data.GetData(typeof(Label));
             if (!_afterPutIntTextBox)
             {
-                if (Grid.Children.Contains(lbl))
+                if (!_putInTextBox)
                 {
                     lbl.Margin = new Thickness(e.GetPosition(this).X - lbl.ActualWidth / 2,
                         e.GetPosition(this).Y - lbl.ActualHeight / 2, 0, 0);
+                    
+                    _putInTextBox = false;
                 }
                 else
                 {
-                    lbl.Margin = new Thickness(e.GetPosition(this).X - lbl.Width / 2,
-                        e.GetPosition(this).Y - lbl.Height / 2, 0, 0);
-                    Grid.Children.Add(lbl);
+                    lbl.IsEnabled = true;
+                    lbl.AllowDrop = false;
+                    lbl.Margin = new Thickness(e.GetPosition(this).X - lbl.ActualWidth / 2,
+                        e.GetPosition(this).Y - lbl.ActualHeight / 2, 0, 0);
                     if (_dragSource.GetType() == typeof(TextBlock))
                     {
                         var tb1 = (TextBlock)_dragSource;
                         tb1.Text = "";
                         tb1.AllowDrop = true;
                     }
+                    
+                    _putInTextBox = false;
                 }
             }
             else
@@ -57,8 +63,10 @@ namespace Task_1
             var tb = (TextBlock)sender;
             var lbl = (Label)e.Data.GetData(typeof(Label));
             tb.Text = lbl.Content.ToString();
-            Grid.Children.Remove(lbl);
+            lbl.IsEnabled = false;
+            lbl.AllowDrop = false;
             _afterPutIntTextBox = true;
+            _putInTextBox = true;
             tb.AllowDrop = false;
             if (_dragSource.GetType() == typeof(TextBlock))
             {
@@ -72,16 +80,15 @@ namespace Task_1
         {
             var tb = (TextBlock)sender;
             var lbl = new Label();
-            lbl.Content = tb.Text;
-            lbl.Height = 30;
-            lbl.Width = 60;
-            lbl.VerticalAlignment = VerticalAlignment.Top;
-            lbl.HorizontalAlignment = HorizontalAlignment.Left;
-            lbl.AllowDrop = false;
-            lbl.MouseDown += (o, args) =>
+            foreach (UIElement gridChild in Grid.Children)
             {
-                Label_MouseDown(lbl, e);
-            };
+                var lbl1 = (Label)gridChild;
+                if (lbl1.Content == tb.Text)
+                {
+                    lbl = lbl1;
+                    break;
+                }
+            }
             _dragSource = tb;
             DragDrop.DoDragDrop(tb, lbl, DragDropEffects.Copy);
         }
