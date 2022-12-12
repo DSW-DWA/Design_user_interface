@@ -41,7 +41,7 @@
                  SelectionMode="Multiple" 
                  AllowDrop="True"
                  Drop="ListBox_OnDrop"
-                 MouseLeftButtonDown="ListBox_OnMouseLeftButtonDown">
+                 PreviewMouseDown="ListBox_OnMouseLeftButtonDown">
             <ListBoxItem Content="информатика"></ListBoxItem>
             <ListBoxItem Content="программирование"></ListBoxItem>
             <ListBoxItem Content="геомертрия"></ListBoxItem>
@@ -58,7 +58,7 @@
                  SelectionMode="Multiple"
                  AllowDrop="True"
                  Drop="ListBox_OnDrop"
-                 MouseLeftButtonDown="ListBox_OnMouseLeftButtonDown">
+                 PreviewMouseDown="ListBox_OnMouseLeftButtonDown">
         </ListBox>
         <Button Name="SaveFileButton"
                 Height="20" 
