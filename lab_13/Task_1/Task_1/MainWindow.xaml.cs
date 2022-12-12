@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Task_1
 {
@@ -38,7 +39,7 @@ namespace Task_1
                 }
                 else
                 {
-                    lbl.IsEnabled = true;
+                    lbl.Foreground = Brushes.Black;
                     lbl.AllowDrop = false;
                     lbl.Margin = new Thickness(e.GetPosition(this).X - lbl.ActualWidth / 2,
                         e.GetPosition(this).Y - lbl.ActualHeight / 2, 0, 0);
@@ -63,7 +64,7 @@ namespace Task_1
             var tb = (TextBlock)sender;
             var lbl = (Label)e.Data.GetData(typeof(Label));
             tb.Text = lbl.Content.ToString();
-            lbl.IsEnabled = false;
+            lbl.Foreground = Brushes.Gray;
             lbl.AllowDrop = false;
             _afterPutIntTextBox = true;
             _putInTextBox = true;
@@ -91,6 +92,15 @@ namespace Task_1
             }
             _dragSource = tb;
             DragDrop.DoDragDrop(tb, lbl, DragDropEffects.Copy);
+        }
+
+        private void UIElement_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var lbl = (Label)sender;
+            if (lbl.Foreground == Brushes.Gray)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

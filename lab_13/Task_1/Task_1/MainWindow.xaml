@@ -9,13 +9,13 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid Name="Grid" Background="Transparent" Drop="Grid_OnDrop" AllowDrop="True">
         <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 10 0 0" 
-               MouseDown="Label_MouseDown" AllowDrop="False">Волк</Label>
+               MouseDown="Label_MouseDown" PreviewMouseDown="UIElement_OnPreviewMouseDown" AllowDrop="False">Волк</Label>
         <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100 10 0 0" 
-               MouseDown="Label_MouseDown" AllowDrop="False">Заяц</Label>
+               MouseDown="Label_MouseDown" PreviewMouseDown="UIElement_OnPreviewMouseDown" AllowDrop="False">Заяц</Label>
         <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200 10 0 0" 
-               MouseDown="Label_MouseDown" AllowDrop="False">Лиса</Label>
+               MouseDown="Label_MouseDown" PreviewMouseDown="UIElement_OnPreviewMouseDown" AllowDrop="False">Лиса</Label>
         <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="300 10 0 0" 
-               MouseDown="Label_MouseDown" AllowDrop="False">Медведь</Label>
+               MouseDown="Label_MouseDown" PreviewMouseDown="UIElement_OnPreviewMouseDown" AllowDrop="False">Медведь</Label>
        <TextBlock Height="30" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Background="White"
                   AllowDrop="True" Drop="UIElement_OnDrop" MouseDown="UIElement_OnMouseDown"></TextBlock>
        <TextBlock Height="30" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100 0 0 10" Background="White"
