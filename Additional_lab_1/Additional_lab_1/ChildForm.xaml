@@ -1,0 +1,16 @@
+﻿<Window x:Class="Additional_lab_1.ChildForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Additional_lab_1"
+        mc:Ignorable="d"
+        Icon="C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\Additional_lab_1\Additional_lab_1\Icon.ico"
+        Closing="ChildForm_OnClosing"
+        StateChanged="ChildForm_OnStateChanged"
+        Title="ChildForm" Height="200" Width="400">
+    <Grid>
+        <TextBlock Name="Main" Height="20" VerticalAlignment="Top"></TextBlock>
+        <TextBlock Name="About" Height="20" VerticalAlignment="Center"></TextBlock>
+    </Grid>
+</Window>

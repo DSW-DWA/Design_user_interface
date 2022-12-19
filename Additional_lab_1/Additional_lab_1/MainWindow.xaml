@@ -1,0 +1,133 @@
+﻿<Window x:Class="Additional_lab_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:Additional_lab_1"
+        mc:Ignorable="d"
+        Name="Main"
+        Closing="MainWindow_OnClosing"
+        Icon="C:\Users\HP Demo\OneDrive\Рабочий стол\Учеба\МиСППИ\Design_user_interface\Additional_lab_1\Additional_lab_1\Icon.ico"
+        Background="Aqua"
+        Title="MainWindow" Height="350" Width="525">
+        <Grid>
+                <Button Name="ChildButton"
+                        Height="20" 
+                        Width="100"
+                        Margin="10"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Click="ChildButton_OnClick"
+                        Content="Создать детку"></Button>
+                <Button Name="AboutButton"
+                        Height="20" 
+                        Width="100"
+                        Margin="10"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Click="AboutButton_OnClick"
+                        Content="О создателе"></Button>
+                <ComboBox Name="SelectChildComboBox"
+                          Width="100" 
+                          Height="20" 
+                          HorizontalAlignment="Left"
+                          IsEnabled="False"
+                          SelectionChanged="SelectChildComboBox_OnSelectionChanged"
+                          VerticalAlignment="Top" Margin="10 50 0 0"></ComboBox>
+                <CheckBox Name="IsVisibleCheckBox" 
+                          Height="20" 
+                          Width="150"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          IsEnabled="False"
+                          Click="IsVisibleCheckBox_OnClick"
+                          Margin="10 100 0 0">Видимость детки</CheckBox>
+                <StackPanel Name="ChildWindowStateStackPanel"
+                            Margin="10"
+                            Height="50" 
+                            Width="100" 
+                            IsEnabled="False"
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Left">
+                    <RadioButton Name="MinimizedRadioButton" Click="RadioButton_OnClick">Свернуто</RadioButton>
+                    <RadioButton Name="MaximizedRadioButton" Click="RadioButton_OnClick">Развернуть</RadioButton>
+                    <RadioButton Name="NormalRadioButton" Click="RadioButton_OnClick">Норма</RadioButton>
+                </StackPanel>
+                <TextBox Name="NameChildTextBox"
+                         Height="20" 
+                         IsEnabled="False"
+                         PreviewKeyDown="NameChildTextBox_OnPreviewKeyDown"
+                         LostFocus="NameChildTextBox_OnLostFocus"
+                         Width="150" HorizontalAlignment="Left" Margin="10 100 0 0">
+                </TextBox>
+                <Label Name="XPositionChildLabel"
+                       Height="30"
+                       Width="150"
+                       HorizontalAlignment="Left"
+                       Margin="10 200 0 0"></Label>
+                <Label Name="YPositionChildLabel"
+                       Height="30"
+                       Width="150"
+                       HorizontalAlignment="Left"
+                       Margin="10 250 0 0">
+                </Label>
+                <Button Name="CloseChildButton" 
+                        Height="20" 
+                        Width="150"
+                        VerticalAlignment="Top"
+                        Click="CloseChildButton_OnClick"
+                        Margin="10">
+                        Закрыть детку
+                </Button> 
+                <Button Name="ColorChangeButton" 
+                        IsEnabled="False"
+                        Height="20" 
+                        Width="150" 
+                        Click="ColorChangeButton_OnClick">
+                        Поменять цвет фона
+                </Button>
+                <Grid VerticalAlignment="Bottom"
+                      IsEnabled="False"
+                      Name="HeightGrid"
+                      Height="20" Width="20" Margin="10 ">
+                        <Button FontFamily="Marlett"
+                                FontSize="7"
+                                Content="5"
+                                Height="10"
+                                Width="20"
+                                Click="Up_OnClick"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Right"/>
+                        <Button FontFamily="Marlett"
+                                FontSize="7"
+                                Content="6"
+                                Height="10"
+                                Width="20"
+                                Click="Down_OnClick"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid VerticalAlignment="Bottom"
+                      IsEnabled="False"
+                      Name="WidthGrid"
+                      Height="20" Width="20" Margin="50 ">
+                        <Button FontFamily="Marlett"
+                                FontSize="7"
+                                Content="5"
+                                Height="10"
+                                Width="20"
+                                Click="Up_OnClick"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Right"/>
+                        <Button FontFamily="Marlett"
+                                FontSize="7"
+                                Content="6"
+                                Height="10"
+                                Width="20"
+                                Click="Down_OnClick"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Right"/>
+                </Grid>
+        </Grid>
+</Window>
